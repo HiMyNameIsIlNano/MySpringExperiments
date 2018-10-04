@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- If the Id is not given, the Id of the Bean is CH1_XML_Config.soundsystem.SgtPepper#0-->
+    <bean id="sgtPepper" class="CH1_XML_Config.soundsystem.SgtPepper"/>
+</beans>
