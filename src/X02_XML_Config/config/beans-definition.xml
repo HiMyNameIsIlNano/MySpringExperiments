@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- If the Id is not given, the Id of the Bean is CH1_XML_Config.soundsystem.SgtPepper#0-->
+    <bean id="compactDisc" class="X02_XML_Config.soundsystem.impl.SgtPepper"/>
+
+    <!-- If the Id is not given, the Id of the Bean is CH1_XML_Config.soundsystem.WhiteAlbum#0
+    <bean id="whiteAlbum" class="CH1_XML_Config.soundsystem.WhiteAlbum">
+        <constructor-arg value="White Album"/>
+        <constructor-arg value="The Beatles"/>
+    </bean>
+    -->
+
+    <!-- Same definition of the bean with the c namespace-->
+    <bean id="whiteAlbum" class="X02_XML_Config.soundsystem.impl.WhiteAlbum"
+        c:title="White Album"
+        c:artist="The Beatles"
+    />
+
+    <bean id="beatlesDiscography" class="X02_XML_Config.soundsystem.impl.BeatlesDiscography">
+        <constructor-arg>
+            <list>
+                <!-- Injecting a list of CompactDisc into the Bean -->
+                <ref bean="compactDisc"/>
+                <ref bean="whiteAlbum"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- Classic Bean Injection
+    <bean id="mediaPlayer" class="X02_XML_Config.soundsystem.impl.SamsungMediaPlayer">
+        <constructor-arg ref="compactDisc"/>
+    </bean>
+    -->
+
+    <!--
+        The usage of the 'c' namespace makes the whole definition of the Bean which needs to be injected more compact.
+        However the 'compactDisc' name after the c namespace must be the same name as the one defined in the SamsungMediaPlayer
+        constructor. In case the class is compiled without debugging symbols this would not work.
+
+        Alternatively could have one declared the bean this way:
+
+        <bean id="mediaPlayer2" class="CH1_XML_Config.soundsystem.impl.SamsungMediaPlayer" c:_0-ref="compactDisc"/>
+
+        where _ is an escape symbol as after the : must be a digit
+        and 0 is positional value of the parameter in the constructor
+    -->
+    <bean id="mediaPlayer" class="X02_XML_Config.soundsystem.impl.SamsungMediaPlayer" c:compactDisc-ref="compactDisc"/>
+
+</beans>
