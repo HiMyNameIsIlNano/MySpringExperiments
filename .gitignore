@@ -38,3 +38,4 @@ insert_post_deploy.sql
 *.pem
 *.jar
 lib/
+out/
