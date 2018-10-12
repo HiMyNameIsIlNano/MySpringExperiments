@@ -1,2 +1,2 @@
 # MySpringExperiments
-A reporitory to commit changes when I experiment with Spring  
+A reporitory to commit changes to when I experiment with Spring  
