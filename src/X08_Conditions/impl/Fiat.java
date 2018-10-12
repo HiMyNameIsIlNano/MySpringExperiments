@@ -1,9 +1,7 @@
 package X08_Conditions.impl;
 
 import X08_Conditions.model.Auto;
-import org.springframework.stereotype.Component;
 
-@Component
 public class Fiat implements Auto{
 
     private String type;

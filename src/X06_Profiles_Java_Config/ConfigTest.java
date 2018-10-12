@@ -1,8 +1,8 @@
 package X06_Profiles_Java_Config;
 
 import X06_Profiles_Java_Config.config.DevelopmentProfileConfig;
-import X06_Profiles_Java_Config.soundsystem.model.Shape;
-import X06_Profiles_Java_Config.soundsystem.ShapeEnum;
+import X06_Profiles_Java_Config.shapes.model.Shape;
+import X06_Profiles_Java_Config.shapes.ShapeEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

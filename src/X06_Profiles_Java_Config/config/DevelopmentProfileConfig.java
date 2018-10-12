@@ -1,8 +1,8 @@
 package X06_Profiles_Java_Config.config;
 
-import X06_Profiles_Java_Config.soundsystem.impl.Rectangle;
-import X06_Profiles_Java_Config.soundsystem.model.Shape;
-import X06_Profiles_Java_Config.soundsystem.impl.Square;
+import X06_Profiles_Java_Config.shapes.impl.Rectangle;
+import X06_Profiles_Java_Config.shapes.model.Shape;
+import X06_Profiles_Java_Config.shapes.impl.Square;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

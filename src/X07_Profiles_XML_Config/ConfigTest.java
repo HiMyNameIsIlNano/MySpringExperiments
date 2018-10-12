@@ -1,7 +1,7 @@
 package X07_Profiles_XML_Config;
 
-import X07_Profiles_XML_Config.soundsystem.ShapeEnum;
-import X07_Profiles_XML_Config.soundsystem.model.Shape;
+import X07_Profiles_XML_Config.shapes.ShapeEnum;
+import X07_Profiles_XML_Config.shapes.model.Shape;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

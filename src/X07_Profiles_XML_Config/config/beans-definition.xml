@@ -5,11 +5,11 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <beans profile="Square">
-        <bean id="square" class="X07_Profiles_XML_Config.soundsystem.impl.Square"/>
+        <bean id="square" class="X07_Profiles_XML_Config.shapes.impl.Square"/>
     </beans>
 
     <beans profile="Rectangle">
-        <bean id="rectangle" class="X07_Profiles_XML_Config.soundsystem.impl.Rectangle"/>
+        <bean id="rectangle" class="X07_Profiles_XML_Config.shapes.impl.Rectangle"/>
     </beans>
 
 </beans>

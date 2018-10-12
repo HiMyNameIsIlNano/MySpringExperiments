@@ -1,4 +1,4 @@
-package X06_Profiles_Java_Config.soundsystem;
+package X07_Profiles_XML_Config.shapes;
 
 public enum ShapeEnum {
 
