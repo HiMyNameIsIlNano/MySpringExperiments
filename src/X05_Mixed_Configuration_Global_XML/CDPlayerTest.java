@@ -1,4 +1,4 @@
-package X05_Mixed_Configuration_Global_XML.soundsystem;
+package X05_Mixed_Configuration_Global_XML;
 
 import X05_Mixed_Configuration_Global_XML.soundsystem.impl.WhiteAlbum;
 import X05_Mixed_Configuration_Global_XML.soundsystem.model.CompactDisc;
