@@ -1,5 +1,6 @@
-package X13_Value_Injection_And_SpEL.soundsystem;
+package X13_Value_Injection_And_SpEL;
 
+import X13_Value_Injection_And_SpEL.configuration.CDPlayerConfig;
 import X13_Value_Injection_And_SpEL.soundsystem.model.CompactDisc;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +12,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:X13_Value_Injection_And_SpEL/configuration/beans-definition.xml")
-public class CDPlayerTestXML {
+@ContextConfiguration(classes = CDPlayerConfig.class)
+public class CDPlayerTest {
 
     @Autowired
     private CompactDisc compactDisc;
@@ -20,7 +21,7 @@ public class CDPlayerTestXML {
     @Test
     public void compactDiscShouldNotBeNull() {
         assertNotNull(compactDisc);
-        assertTrue(compactDisc.toString().contains("Let it be"));
+        assertTrue(compactDisc.toString().contains("Sgt. Pepper's Lonely Heart Club Band"));
     }
 
 }
