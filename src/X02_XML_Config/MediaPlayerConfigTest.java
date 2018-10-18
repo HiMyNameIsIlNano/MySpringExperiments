@@ -1,4 +1,4 @@
-package X02_XML_Config.soundsystem;
+package X02_XML_Config;
 
 import X02_XML_Config.soundsystem.model.MediaPlayer;
 import org.junit.Test;

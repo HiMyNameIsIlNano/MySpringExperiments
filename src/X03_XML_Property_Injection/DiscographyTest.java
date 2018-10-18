@@ -1,4 +1,4 @@
-package X03_XML_Property_Injection.soundsystem;
+package X03_XML_Property_Injection;
 
 import X03_XML_Property_Injection.soundsystem.model.Discography;
 import org.junit.Test;

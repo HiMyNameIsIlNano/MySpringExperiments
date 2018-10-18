@@ -1,7 +1,6 @@
-package X14_Aspects_Java_Config;
+package X15_Aspects_XML_Config;
 
-import X14_Aspects_Java_Config.config.AspectsConfig;
-import X14_Aspects_Java_Config.service.DummyService;
+import X15_Aspects_XML_Config.service.DummyService;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -14,7 +13,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AspectsConfig.class)
+@ContextConfiguration(locations = "classpath:X15_Aspects_XML_Config/config/beans-definition.xml")
 public class AopTest {
 
     @Rule

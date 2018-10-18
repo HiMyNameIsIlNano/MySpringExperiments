@@ -1,4 +1,4 @@
-package X01_Java_Config.soundsystem;
+package X01_Java_Config;
 
 import X01_Java_Config.configuration.CDPlayerExplicitConfig;
 import X01_Java_Config.soundsystem.model.CompactDisc;

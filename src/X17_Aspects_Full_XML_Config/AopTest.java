@@ -1,7 +1,6 @@
-package X14_Aspects_Java_Config;
+package X17_Aspects_Full_XML_Config;
 
-import X14_Aspects_Java_Config.config.AspectsConfig;
-import X14_Aspects_Java_Config.service.DummyService;
+import X17_Aspects_Full_XML_Config.service.DummyService;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -14,7 +13,7 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AspectsConfig.class)
+@ContextConfiguration(locations = "classpath:X17_Aspects_Full_XML_Config/config/beans-definition.xml")
 public class AopTest {
 
     @Rule
@@ -27,6 +26,7 @@ public class AopTest {
     public void serviceIsNotNull() {
         assertNotNull(service);
         service.aMethodIWantToTest("I am alive");
+        service.aMethodIWantToImprove("I want to get better");
 
         String log = systemOutRule.getLog();
         assertNotNull(log);

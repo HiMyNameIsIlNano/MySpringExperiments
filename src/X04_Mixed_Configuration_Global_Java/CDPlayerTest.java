@@ -1,4 +1,4 @@
-package X04_Mixed_Configuration_Global_Java.soundsystem;
+package X04_Mixed_Configuration_Global_Java;
 
 import X04_Mixed_Configuration_Global_Java.config.SoundSystemConfig;
 import X04_Mixed_Configuration_Global_Java.soundsystem.impl.WhiteAlbum;
