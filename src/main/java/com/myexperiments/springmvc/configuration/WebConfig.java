@@ -16,23 +16,30 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan(basePackages = "com.myexperiments.springmvc")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
+    /**
+     * NOTE: When registering the bean for Apache tiles, the bean ViewResolver for Jsp views
+     * is not necessary anymore. Otherwise the tiles will not be rendered.
+     */
+    /*@Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/views/pages/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
-    }
+    }*/
 
-    /*
-    * The DispatcherServlet will forward requests for static resources to the servlet container’s default
-    * servlet and not to try to handle them itself.
-    * */
-    @Override
+    /**
+     * NOTE: When registering the bean for Apache tiles, the bean ViewResolver for Jsp views
+     * is not necessary anymore. Otherwise the tiles will not be rendered.
+     *
+     * The DispatcherServlet will forward requests for static resources to the servlet container’s default
+     * servlet and not to try to handle them itself.
+     */
+    /*@Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
-    }
+    }*/
 
     @Bean
     public MessageSource messageSource() {
@@ -42,9 +49,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return messageSource;
     }
 
-    /**
-     * Configure TilesConfigurer.
-     */
     @Bean
     public TilesConfigurer tilesConfigurer(){
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
@@ -59,17 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * Configure ViewResolvers to deliver preferred views.
-
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        TilesViewResolver viewResolver = new TilesViewResolver();
-        registry.viewResolver(viewResolver);
-    }
-     */
-
-    /**
-     * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
+     * Used for CSS Files
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
