@@ -1,18 +1,23 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
-<html>
-<c:forEach items="${spittleList}" var="spittle" >
-    <li id="spittle_<c:out value="spittle.id"/>">
-        <div class="spittleMessage">
-            <c:out value="${spittle.message}" />
-        </div>
+<link rel="stylesheet"
+      type="text/css"
+      th:href="@{/webapp/static/css/style.css}"/>
+
+<div th:if="${!spittleList.empty}">
+    <li th:each="spittle : ${spittleList}">
+        <div class="spittleMessage" th:text="${spittle.message}">Message</div>
         <div>
-            <span class="spittleTime"><c:out value="${spittle.time}" /></span>
-            <span class="spittleLocation">
-(<c:out value="${spittle.latitude}" />,
-<c:out value="${spittle.longitude}" />)</span>
+            <span class="spittleTime" th:text="${spittle.time}">Time</span>
+            (
+            <span class="spittleLocation" th:text="${spittle.latitude}">Latitude</span>
+            /
+            <span class="spittleLocation" th:text="${spittle.longitude}">Longitude</span>
+            )
         </div>
     </li>
-</c:forEach>
+</div>
+
 </html>
+

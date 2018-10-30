@@ -1,36 +1,14 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- Spring Tags Library (Old one not that used anymore) -->
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-
-<%@ page session="false" %>
-<html>
-<%--Variable definition --%>
-<s:url value="/spitter/register" var="registerUrl"/>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spittr</title>
     <link rel="stylesheet"
           type="text/css"
-          href="<c:url value="/static/css/style.css" />" >
+          th:href="@{/webapp/static/css/style.css}"/>
 </head>
 <body>
-<h1><s:message code="home.welcome" /></h1>
-
-<div>
-    <s:escapeBody htmlEscape="false">
-        <h1><s:message code="home.description"/></h1>
-    </s:escapeBody>
-</div>
-
-<br/>
-
-<a href="<c:url value="/spittles" />"><s:message code="home.spittles"/> </a>
-
-<%--<s:url value="/spittles">--%>
-    <%--<s:param name="max" value="40"/>--%>
-    <%--<s:param name="count" value="20"/>--%>
-<%--</s:url>--%>
-|
-<a href="<c:url value="${registerUrl}" />"><s:message code="home.register"/> </a>
+<h1>Welcome to Spittr</h1>
+<a th:href="@{/spittles}">Spittles</a> |
+<a th:href="@{/spitter/register}">Register</a>
 </body>
 </html>

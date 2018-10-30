@@ -1,53 +1,56 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- Spring JSP Form Library -->
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-
-<%@ page session="false" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spittr</title>
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value="/static/css/style.css" />" >
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/webapp/static/css/style.css}"/>
 </head>
 <body>
-<h1><s:message code="register.header"/></h1>
-<%--<form method="POST" action="/spitter/register">
-    First Name: <input type="text" firstName="firstName" /><br/>
-    Last Name: <input type="text" firstName="lastName" /><br/>
-    Email: <input type="text" firstName="email" /><br/>
-    Username: <input type="text" firstName="username" /><br/>
-    Password: <input type="password" firstName="password" /><br/>
-    <input type="submit" value="Register" />
-</form>--%>
+<form method="POST" th:object="${spitter}" action="/spitter/register">
+    <div class="errors" th:if="${#fields.hasErrors('*')}">
+        <ul>
+            <li th:each="err : ${#fields.errors('*')}"
+                th:text="${err}">Input is incorrect
+            </li>
+        </ul>
+    </div>
 
-<!-- There must be an object in the model for the method whose key is spitter, or else the form won’t be able to render -->
-<sf:form method="POST" commandName="spitter" action="/spitter/register">
+    <!--/*
+        ${} expressions (such as ${spitter}) are SpEL expressions
+        *{} expressions, are selection expressions. Selection expressions
+        are evaluated on a selected object. In the case of the form, the
+        selected object is the one given in the <form> tag’s th:object attribute.
+    */-->
+    <label th:class="${#fields.hasErrors('firstName')}? 'error'">
+        First Name</label>:
+    <input type="text" th:field="*{firstName}"
+           th:class="${#fields.hasErrors('firstName')}? 'error'"/><br/>
 
-    <%-- This one displays all the errors in a tab above the form --%>
-    <sf:errors path="*" element="div" cssClass="errors" />
+    <!--/*Binding the field to the backing object’s lastName property, you use the th:field attribute,
+    referring to the lastName field. By using th:field, one gets both a value attribute set to the
+    value of firstName and also a name attribute set to lastName.*/-->
+    <label th:class="${#fields.hasErrors('lastName')}? 'error'">
+        Last Name</label>:
+    <input type="text" th:field="*{lastName}"
+           th:class="${#fields.hasErrors('lastName')}? 'error'"/><br/>
 
-    <s:message code="register.name"/>:
-        <sf:input path="firstName" />
-            <sf:errors path="firstName" cssClass="error"/><br/>
+    <label th:class="${#fields.hasErrors('email')}? 'error'">
+        Email</label>:
+    <input type="text" th:field="*{email}"
+           th:class="${#fields.hasErrors('email')}? 'error'"/><br/>
 
-    <s:message code="register.surname"/>:
-        <sf:input path="lastName" />
-            <sf:errors path="lastName" cssClass="error"/><br/>
+    <label th:class="${#fields.hasErrors('username')}? 'error'">
+        Username</label>:
+    <input type="text" th:field="*{username}"
+           th:th:class="${#fields.hasErrors('username')}? 'error'"/><br/>
 
-    <s:message code="register.email"/>:
-        <sf:input path="email" type="email"/>
-            <sf:errors path="email" cssClass="error"/><br/>
+    <label th:class="${#fields.hasErrors('password')}? 'error'">
+        Password</label>:
+    <input type="password" th:field="*{password}"
+           th:class="${#fields.hasErrors('password')}? 'error'"/><br/>
 
-    <s:message code="register.username"/>:
-        <sf:input path="username" />
-            <sf:errors path="username" cssClass="error"/><br/>
-
-    <s:message code="register.password"/>:
-        <sf:password path="password" />
-            <sf:errors path="password" cssClass="error"/><br/>
-
-    <input type="submit" value=<s:message code="register.submit"/> />
-</sf:form>
+    <input type="submit" value="Register"/>
+</form>
 </body>
 </html>

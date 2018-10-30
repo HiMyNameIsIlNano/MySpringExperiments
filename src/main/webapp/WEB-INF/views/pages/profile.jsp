@@ -1,10 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@ page session="false" %>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
-<html>
-    <h1><s:message code="profile.header"/> </h1>
-    <c:out value="${spitter.username}" /><br/>
-    <c:out value="${spitter.firstName}" />
-    <c:out value="${spitter.lastName}" />
+<body>
+<div class="spittleView">
+    <h1>This is my profile</h1>
+    <div class="spittleName" th:text="${spitter.username}" />
+    <div class="spittleName" th:text="${spitter.firstName}" />
+    <div class="spittleName" th:text="${spitter.lastName}" />
+</div>
+</body>
 </html>

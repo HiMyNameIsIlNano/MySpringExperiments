@@ -1,65 +1,65 @@
 package com.myexperiments.springmvc.configuration;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.spring3.SpringTemplateEngine;
+import org.thymeleaf.spring3.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring3.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.myexperiments.springmvc")
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
-    /**
-     * NOTE: When registering the bean for Apache tiles, the bean ViewResolver for Jsp views
-     * is not necessary anymore. Otherwise the tiles will not be rendered.
-     */
-    /*@Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/pages/");
-        viewResolver.setSuffix(".jsp");
-        viewResolver.setExposeContextBeansAsAttributes(true);
-        return viewResolver;
-    }*/
+    private ApplicationContext applicationContext;
 
-    /**
-     * NOTE: When registering the bean for Apache tiles, the bean ViewResolver for Jsp views
-     * is not necessary anymore. Otherwise the tiles will not be rendered.
-     *
-     * The DispatcherServlet will forward requests for static resources to the servlet container’s default
-     * servlet and not to try to handle them itself.
-     */
-    /*@Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }*/
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
     @Bean
-    public MessageSource messageSource() {
+    public ViewResolver viewResolver() {
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
+        return resolver;
+    }
+
+    @Bean
+    public TemplateEngine templateEngine() {
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setMessageSource(messageSource());
+        engine.setTemplateResolver(templateResolver());
+        return engine;
+    }
+
+    private ITemplateResolver templateResolver() {
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setApplicationContext(applicationContext);
+        resolver.setPrefix("/WEB-INF/views/pages/");
+        resolver.setSuffix(".jsp");
+        resolver.setTemplateMode(TemplateMode.HTML);
+        return resolver;
+    }
+
+
+    private MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         // The resource file must be at the root of the web application
         messageSource.setBasename("messages");
         return messageSource;
-    }
-
-    @Bean
-    public TilesConfigurer tilesConfigurer(){
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/views/**/tiles.xml"});
-        tilesConfigurer.setCheckRefresh(true);
-        return tilesConfigurer;
-    }
-
-    @Bean
-    public ViewResolver tilesViewResolver() {
-        return new TilesViewResolver();
     }
 
     /**
