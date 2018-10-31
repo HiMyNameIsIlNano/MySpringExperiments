@@ -61,6 +61,7 @@ public class SpitterController {
 
         spitter.setProfilePicture(profilePicture);
 
+        // https://www.baeldung.com/spring-file-upload
         File destination = new File("/home/user/Development/Eclipse/MySpringExperiments/uploads",
                 UUID.randomUUID().toString());
         profilePicture.transferTo(destination);
