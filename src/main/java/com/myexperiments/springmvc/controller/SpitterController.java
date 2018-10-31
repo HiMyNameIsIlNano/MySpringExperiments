@@ -25,9 +25,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping(path = "/spitter")
 public class SpitterController {
 
-    @Value(value = "${file.storage.default.folder}")
-    private String fileStorageDefaultFolder;
-
     private SpitterRepository spitterRepository;
 
     @Autowired
@@ -64,7 +61,8 @@ public class SpitterController {
 
         spitter.setProfilePicture(profilePicture);
 
-        File destination = new File(fileStorageDefaultFolder, UUID.randomUUID().toString());
+        File destination = new File("/home/user/Development/Eclipse/MySpringExperiments/uploads",
+                UUID.randomUUID().toString());
         profilePicture.transferTo(destination);
         spitterRepository.save(spitter);
 

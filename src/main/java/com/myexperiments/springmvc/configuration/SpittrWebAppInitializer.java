@@ -17,9 +17,6 @@ import javax.servlet.ServletRegistration;
 **/
 public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-    @Value(value = "${file.storage.default.folder}")
-    private String fileStorageDefaultFolder;
-
     /**
      * The maximum size (in bytes) of a file that can be uploaded without being written to the
      * temporary location.
@@ -60,7 +57,7 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(
-                new MultipartConfigElement(fileStorageDefaultFolder,
+                new MultipartConfigElement("/home/user/Development/Eclipse/MySpringExperiments/uploads",
                         MAX_FILE_SIZE,
                         MAX_REQUEST_SIZE,
                         FILE_SIZE_THRESHOLD));
