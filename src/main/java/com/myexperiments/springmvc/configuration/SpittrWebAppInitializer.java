@@ -1,6 +1,10 @@
 package com.myexperiments.springmvc.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 /*
 * This DispatcherServlet will be automatically discovered when deployed in a Servlet 3.0 container and
@@ -12,6 +16,17 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 * you’ll be deploying your applications to a servlet container that supports Servlet 3.0.
 **/
 public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Value(value = "${file.storage.default.folder}")
+    private String fileStorageDefaultFolder;
+
+    /**
+     * The maximum size (in bytes) of a file that can be uploaded without being written to the
+     * temporary location.
+     * */
+    private static final int FILE_SIZE_THRESHOLD = 0;
+    private static final int MAX_FILE_SIZE = 2097152; // 2M
+    private static final int MAX_REQUEST_SIZE = 4194304; // 4M
 
     /*
     * This one identifies one or more paths that DispatcherServlet will be mapped to.
@@ -38,4 +53,17 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[] { WebConfig.class };
     }
+
+    /*
+    * Custom Servlet for handling File Upload
+    * */
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(
+                new MultipartConfigElement(fileStorageDefaultFolder,
+                        MAX_FILE_SIZE,
+                        MAX_REQUEST_SIZE,
+                        FILE_SIZE_THRESHOLD));
+    }
+
 }

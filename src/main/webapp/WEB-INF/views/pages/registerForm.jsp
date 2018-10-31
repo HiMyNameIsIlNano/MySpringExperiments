@@ -7,7 +7,7 @@
           th:href="@{/webapp/static/css/style.css}"/>
 </head>
 <body>
-<form method="POST" th:object="${spitter}" action="/spitter/register">
+<form method="POST" th:object="${spitter}" action="/spitter/register" enctype="multipart/form-data">
     <div class="errors" th:if="${#fields.hasErrors('*')}">
         <ul>
             <li th:each="err : ${#fields.errors('*')}"
@@ -49,6 +49,11 @@
         Password</label>:
     <input type="password" th:field="*{password}"
            th:class="${#fields.hasErrors('password')}? 'error'"/><br/>
+
+    <label>Profile Picture</label>:
+    <input type="file"
+           name="profilePicture"
+           accept="image/jpeg,image/png,image/gif" /><br/>
 
     <input type="submit" value="Register"/>
 </form>

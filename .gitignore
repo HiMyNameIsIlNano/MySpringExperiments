@@ -24,18 +24,11 @@ nbdist/
 .nb-gradle/
 
 ### Environment Properties ###
-application-h2.properties
-application-psql.properties
-application-rds.properties
-application.properties
-
-### SQL Scripts ###
-create_db_schema_int.sql
-create_db_schema_prod.sql
-insert_post_deploy.sql
+local.properties
 
 ### Others ###
 *.pem
 *.jar
 lib/
 out/
+uploads/

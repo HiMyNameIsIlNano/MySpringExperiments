@@ -2,9 +2,11 @@ package com.myexperiments.springmvc.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.IOException;
 
 public class Spitter {
 
@@ -29,6 +31,8 @@ public class Spitter {
     @Size(min=2, max=30)
     private String lastName;
 
+    private MultipartFile profilePicture;
+
     public Spitter() {
     }
 
@@ -50,12 +54,29 @@ public class Spitter {
                    String email,
                    String firstName,
                    String lastName) {
+        this(username, password, email, firstName, lastName);
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    }
+
+    public Spitter(String username,
+                   String password,
+                   String email,
+                   String firstName,
+                   String lastName,
+                   MultipartFile profilePicture) {
+        this(username, password, email, firstName, lastName);
+        this.profilePicture = profilePicture;
+    }
+
+    public Spitter(Long id,
+                   String username,
+                   String password,
+                   String email,
+                   String firstName,
+                   String lastName,
+                   MultipartFile profilePicture) {
+        this(id, username, password, email, firstName, lastName);
+        this.profilePicture = profilePicture;
     }
 
     public Long getId() {
@@ -104,6 +125,14 @@ public class Spitter {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MultipartFile getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(MultipartFile profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     @Override

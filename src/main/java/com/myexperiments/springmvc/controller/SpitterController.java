@@ -3,13 +3,20 @@ package com.myexperiments.springmvc.controller;
 import com.myexperiments.springmvc.data.SpitterRepository;
 import com.myexperiments.springmvc.model.Spitter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -17,6 +24,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 @RequestMapping(path = "/spitter")
 public class SpitterController {
+
+    @Value(value = "${file.storage.default.folder}")
+    private String fileStorageDefaultFolder;
 
     private SpitterRepository spitterRepository;
 
@@ -38,19 +48,26 @@ public class SpitterController {
     }
 
     /*
-    * In addition to 'redirect:', InternalResourceViewResolver also recognizes 'forward:'
+    * If one writes a controller handler method to accept file uploads via a Part parameter instead of a
+    * MultipartFile, there is no need to configure the StandardServletMultipartResolver bean.
     *
-    * As the validation API has been added to each field of the Spitter, it is necessary to activate
-    * the Validation at the Controller Level. Adding the validation in the Spitter Class would have not
-    * been enough.
+    * StandardServletMultipartResolver is required only when one is working with MultipartFile.
     **/
     @RequestMapping(value="/register", method=POST)
-    public String processRegistration(@Valid Spitter spitter, Errors errors) {
+    public String processRegistration(
+            @RequestPart("profilePicture") MultipartFile profilePicture,
+            @Valid Spitter spitter,
+            Errors errors) throws IOException {
         if(errors.hasErrors()) {
             return "registerForm";
         }
 
+        spitter.setProfilePicture(profilePicture);
+
+        File destination = new File(fileStorageDefaultFolder, UUID.randomUUID().toString());
+        profilePicture.transferTo(destination);
         spitterRepository.save(spitter);
+
         return "redirect:/spitter/" + spitter.getUsername();
     }
 

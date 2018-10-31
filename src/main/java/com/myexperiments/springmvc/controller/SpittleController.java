@@ -1,6 +1,7 @@
 package com.myexperiments.springmvc.controller;
 
 import com.myexperiments.springmvc.data.SpittleRepository;
+import com.myexperiments.springmvc.exceptions.SpittleNotFoundException;
 import com.myexperiments.springmvc.model.Spittle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +61,13 @@ public class SpittleController {
      * */
     @RequestMapping(path = "/spittles/{spittleId}", method = RequestMethod.GET)
     public String spittle(@PathVariable(value = "spittleId") long id, Model model) {
-        model.addAttribute("spittle", spittleRepository.findOne(id));
+        Spittle spittle = spittleRepository.findOne(id);
+
+        if(spittle == null) {
+            throw new SpittleNotFoundException();
+        }
+
+        model.addAttribute("spittle", spittle);
         return "spittle";
     }
 

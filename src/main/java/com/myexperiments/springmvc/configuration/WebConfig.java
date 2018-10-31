@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -61,6 +62,28 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         messageSource.setBasename("messages");
         return messageSource;
     }
+
+    @Bean
+    public
+    static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+
+    /**
+     * If the Application is going to be deployed to a non Servlet 3.0 compliant Container, it is not
+     * possible to define a Servlet as a MultipartConfigElement like in the SpittrWebAppInitializer class,
+     * but it is necessary to use a CommonsMultipartResolver.
+     */
+    /*
+    @Bean
+    public MultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setUploadTempDir(new FileSystemResource("/tmp/spittr/uploads"));
+        multipartResolver.setMaxUploadSize(2097152);
+        multipartResolver.setMaxInMemorySize(0);
+        return multipartResolver;
+    }
+    */
 
     /**
      * Used for CSS Files

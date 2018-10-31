@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalLong;
 
 @Repository
 public class SpitterRepositoryImpl implements SpitterRepository {
@@ -14,7 +16,19 @@ public class SpitterRepositoryImpl implements SpitterRepository {
 
     @Override
     public Spitter save(Spitter spitter) {
-        spitterList.remove(spitter);
+        // Manage Updates
+        Optional<Spitter> oldSpitter = spitterList.stream()
+                .filter(aSpitter -> aSpitter.equals(spitter))
+                .findFirst();
+
+        oldSpitter.ifPresent(theOldSpitter -> spitterList.remove(theOldSpitter));
+
+        Long max = spitterList.stream()
+                .mapToLong(Spitter::getId)
+                .max()
+                .orElse(0L);
+
+        spitter.setId(max + 1L);
         spitterList.add(spitter);
         return spitter;
     }
