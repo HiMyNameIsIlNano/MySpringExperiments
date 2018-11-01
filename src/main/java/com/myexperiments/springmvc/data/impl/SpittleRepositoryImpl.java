@@ -16,10 +16,10 @@ public class SpittleRepositoryImpl implements SpittleRepository {
 
     @Override
     public List<Spittle> findSpittles(long max, int count) {
-        for (int i=0; i < count; i++) {
+        for (long i=1; i <= count; i++) {
             double latitude = Utils.getDoubleWithinRange(1, 40);
             double longitude = Utils.getDoubleWithinRange(1, 40);
-            spittles.add(new Spittle("Spittle " + i, new Date(), latitude, longitude));
+            spittles.add(new Spittle(i, "Spittle " + i, new Date(), latitude, longitude));
         }
 
         return spittles;

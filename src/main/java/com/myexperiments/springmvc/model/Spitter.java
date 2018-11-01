@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.IOException;
 
 public class Spitter {
 
@@ -31,7 +30,9 @@ public class Spitter {
     @Size(min=2, max=30)
     private String lastName;
 
-    private MultipartFile profilePicture;
+    private MultipartFile multipartFile;
+
+    private String image;
 
     public Spitter() {
     }
@@ -63,9 +64,11 @@ public class Spitter {
                    String email,
                    String firstName,
                    String lastName,
-                   MultipartFile profilePicture) {
+                   MultipartFile multipartFile,
+                   String image) {
         this(username, password, email, firstName, lastName);
-        this.profilePicture = profilePicture;
+        this.multipartFile = multipartFile;
+        this.image = image;
     }
 
     public Spitter(Long id,
@@ -74,9 +77,11 @@ public class Spitter {
                    String email,
                    String firstName,
                    String lastName,
-                   MultipartFile profilePicture) {
+                   MultipartFile multipartFile,
+                   String image) {
         this(id, username, password, email, firstName, lastName);
-        this.profilePicture = profilePicture;
+        this.multipartFile = multipartFile;
+        this.image = image;
     }
 
     public Long getId() {
@@ -127,12 +132,20 @@ public class Spitter {
         this.email = email;
     }
 
-    public MultipartFile getProfilePicture() {
-        return profilePicture;
+    public MultipartFile getMultipartFile() {
+        return multipartFile;
     }
 
-    public void setProfilePicture(MultipartFile profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setMultipartFile(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

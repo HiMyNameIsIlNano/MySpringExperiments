@@ -4,11 +4,11 @@
 <body>
 <div class="spittleView">
     <h1>This is my profile</h1>
-    <div>
+    <%--<div>
         <span class="pull-right">
-            <img class="info" th:attr="src=@{${spitter.profilePicture}}" />
+            <img th:src="*{'data:image/png;base64,'+ ${spitter.image}}" alt="" />
         </span>
-    </div>
+    </div>--%>
     <div class="spittleName" th:text="${spitter.username}" />
     <div class="spittleName" th:text="${spitter.firstName}" />
     <div class="spittleName" th:text="${spitter.lastName}" />

@@ -1,6 +1,5 @@
 package com.myexperiments.springmvc.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.MultipartConfigElement;
@@ -57,7 +56,7 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(
-                new MultipartConfigElement("/home/user/Development/Eclipse/MySpringExperiments/uploads",
+                new MultipartConfigElement("/usr/home/User/Development/spring/uploads",
                         MAX_FILE_SIZE,
                         MAX_REQUEST_SIZE,
                         FILE_SIZE_THRESHOLD));
