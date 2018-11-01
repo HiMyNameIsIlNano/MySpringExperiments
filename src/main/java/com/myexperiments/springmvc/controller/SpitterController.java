@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -54,7 +55,7 @@ public class SpitterController {
     public String processRegistration(
             @RequestPart("profilePicture") MultipartFile profilePicture,
             @Valid Spitter spitter,
-            Model model,
+            RedirectAttributes model,
             Errors errors) throws IOException {
         if(errors.hasErrors()) {
             return "registerForm";
@@ -71,6 +72,8 @@ public class SpitterController {
         model.addAttribute("username", spitter.getUsername());
         // The Id of the User will also be shown as a Query Parameter
         model.addAttribute("id", spitter.getId());
+        model.addFlashAttribute("flashAttribute", "An attribute that survived the redirect");
+
         return "redirect:/spitter/{username}";
     }
 
