@@ -1,0 +1,25 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:form="http://www.springframework.org/tags/form">
+<jsp:output omit-xml-declaration="yes"/>
+<jsp:directive.page contentType="text/html;charset=UTF-8"/>
+
+<head><title>Spizza</title></head>
+
+<body>
+<h2>Welcome to Spizza!!!</h2>
+<form:form>
+    <!--
+        When the user submits the form, the flow execution key is sent along with it in the _flowExecutionKey field,
+        and the flow resumes where it left off.
+    -->
+    <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
+    <input type="text" name="phoneNumber"/><br/>
+    <!--
+        The _eventId_ portion of the button’s name is a clue to Spring Web Flow that what follows is an event that
+        should be fired (see customer.xml file).
+    -->
+    <input type="submit" name="_eventId_phoneEntered" value="Lookup Customer"/>
+</form:form>
+</body>
+
+</html>
