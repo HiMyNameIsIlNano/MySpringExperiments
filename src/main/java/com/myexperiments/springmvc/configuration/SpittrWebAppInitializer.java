@@ -1,5 +1,6 @@
 package com.myexperiments.springmvc.configuration;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.MultipartConfigElement;
