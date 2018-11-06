@@ -5,6 +5,12 @@
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd"
       start-state="identifyCustomer">
 
+    <!--
+        1. action states -> perform business logic;
+        2. view states -> involve the user in the flow;
+        3. decision states -> dynamically direct the flow;
+        4. end states -> signify the end of a flow.
+    -->
     <var name="order" class="com.myexperiments.pizza.domain.Order"/>
 
     <!--
