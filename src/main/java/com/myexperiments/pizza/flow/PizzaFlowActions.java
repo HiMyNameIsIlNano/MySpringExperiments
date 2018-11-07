@@ -18,12 +18,10 @@ public class PizzaFlowActions {
 
     private static final Logger LOGGER = Logger.getLogger(PizzaFlowActions.class.getName());
 
-    public Customer lookupCustomer(String phoneNumber)
-            throws CustomerNotFoundException {
-        Customer customer = customerService.lookupCustomer(phoneNumber);
-        if(customer != null) {
-            return customer;
-        } else {
+    public Customer lookupCustomer(String phoneNumber) throws CustomerNotFoundException {
+        try {
+            return customerService.lookupCustomer(phoneNumber);
+        } catch (CustomerNotFoundException e) {
             throw new CustomerNotFoundException();
         }
     }

@@ -2,7 +2,7 @@
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
-        http://www.springframework.org/schema/webflow/spring-webflow-2.3.xsd">
+      http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <var name="customer" class="com.myexperiments.pizza.domain.Customer"/>
 
@@ -11,14 +11,14 @@
     </view-state>
 
     <action-state id="lookupCustomer">
-        <evaluate result="customer" expression="pizzaFlowActions.lookupCustomer(requestParameters.phoneNumber)"/>
+        <evaluate result="order.customer" expression="pizzaFlowActions.lookupCustomer(requestParameters.phoneNumber)"/>
         <transition to="registrationForm" on-exception="com.myexperiments.pizza.service.CustomerNotFoundException"/>
         <transition to="customerReady"/>
     </action-state>
 
-    <view-state id="registrationForm" model="customer">
+    <view-state id="registrationForm" model="order">
         <on-entry>
-            <evaluate expression="customer.phoneNumber = requestParameters.phoneNumber"/>
+            <evaluate expression="order.customer.phoneNumber = requestParameters.phoneNumber"/>
         </on-entry>
         <transition on="submit" to="checkDeliveryArea"/>
     </view-state>

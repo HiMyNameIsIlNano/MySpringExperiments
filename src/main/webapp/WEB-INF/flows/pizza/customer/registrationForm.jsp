@@ -1,26 +1,25 @@
-<html xmlns:jsp="http://java.sun.com/JSP/Page"
-      xmlns:form="http://www.springframework.org/tags/form">
-<jsp:output omit-xml-declaration="yes"/>
-<jsp:directive.page contentType="text/html;charset=UTF-8"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<html>
 
-<head><title>Spizza</title></head>
+<head><title>Spring Pizza</title></head>
 
 <body>
 <h2>Customer Registration</h2>
-<form:form commandName="customer">
-    <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
 
-    <!-- Set the attributes of the object customer -->
-    <b>Phone number: </b><form:input path="phoneNumber"/><br/>
-    <b>Name: </b><form:input path="name"/><br/>
-    <b>Address: </b><form:input path="address"/><br/>
-    <b>City: </b><form:input path="city"/><br/>
-    <b>State: </b><form:input path="state"/><br/>
-    <b>Zip Code: </b><form:input path="zipCode"/><br/>
-
-    <input type="submit" name="_eventId_submit" value="Submit"/>
-    <input type="submit" name="_eventId_cancel" value="Cancel"/>
+<form:form commandName="order">
+    <input type="hidden" name="_flowExecutionKey"
+           value="${flowExecutionKey}"/>
+    <b>Phone number: </b><form:input path="customer.phoneNumber"/><br/>
+    <b>Name: </b><form:input path="customer.name"/><br/>
+    <b>Address: </b><form:input path="customer.address"/><br/>
+    <b>City: </b><form:input path="customer.city"/><br/>
+    <b>State: </b><form:input path="customer.state"/><br/>
+    <b>Zip Code: </b><form:input path="customer.zipCode"/><br/>
+    <input type="submit" name="_eventId_submit"
+           value="Submit"/>
+    <input type="submit" name="_eventId_cancel"
+           value="Cancel"/>
 </form:form>
 </body>
-
 </html>
