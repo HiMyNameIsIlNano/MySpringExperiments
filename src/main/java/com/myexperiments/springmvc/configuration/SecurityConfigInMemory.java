@@ -37,7 +37,10 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
                 .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
-                .anyRequest().permitAll(); // all the other request are not authenticated
+                .anyRequest().permitAll()
+                .and()
+                .requiresChannel() // Use HTTPS
+                .antMatchers("/spitter/form").requiresSecure(); // all the other request are not authenticated
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,5 +45,18 @@ public class SecurityConfigJdbc extends WebSecurityConfigurerAdapter {
                 // The password in the database is never decoded
                 .passwordEncoder(new BCryptPasswordEncoder(10, SecureRandom.getInstance("53cr3t")));
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        /**
+         * This one makes use of the SpEL in order to restrict the access to the application. This combination with the
+         * hasRole and hasIpAddress would not be possible with a traditional Spring Security Methods.
+         * */
+        http.authorizeRequests()
+                .antMatchers("/spitter/me")
+                .access("hasRole('ROLE_SPITTER') and hasIpAddress('192.168.1.2')");
+    }
+
+
 
 }
