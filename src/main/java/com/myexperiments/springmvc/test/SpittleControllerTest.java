@@ -1,8 +1,8 @@
 package com.myexperiments.springmvc.test;
 
-import com.myexperiments.springmvc.controller.SpittleController;
-import com.myexperiments.springmvc.data.SpittleRepository;
-import com.myexperiments.springmvc.model.Spittle;
+import domain.controller.SpittleController;
+import domain.service.SpittleRepository;
+import domain.model.Spittle;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;

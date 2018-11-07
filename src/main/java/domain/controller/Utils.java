@@ -1,4 +1,4 @@
-package com.myexperiments.springmvc.controller;
+package domain.controller;
 
 import java.util.Random;
 

@@ -1,5 +1,7 @@
 package com.myexperiments.springmvc.configuration;
 
+import domain.service.SpitterRepository;
+import domain.service.impl.SpitterUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +23,14 @@ public class SecurityConfigJdbc extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private SpitterRepository spitterRepository;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
+        auth.userDetailsService(new SpitterUserServiceImpl(spitterRepository))
+                .and()
+                .jdbcAuthentication()
                 .dataSource(dataSource)
                 /**
                  *   This tells Spring Security that the Users and the Roles that are existing in the application

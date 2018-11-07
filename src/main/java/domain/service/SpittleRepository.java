@@ -1,6 +1,6 @@
-package com.myexperiments.springmvc.data;
+package domain.service;
 
-import com.myexperiments.springmvc.model.Spittle;
+import domain.model.Spittle;
 
 import java.util.List;
 

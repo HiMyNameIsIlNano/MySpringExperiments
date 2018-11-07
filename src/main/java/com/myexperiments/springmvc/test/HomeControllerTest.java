@@ -1,6 +1,6 @@
 package com.myexperiments.springmvc.test;
 
-import com.myexperiments.springmvc.controller.HomeController;
+import domain.controller.HomeController;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 

@@ -1,6 +1,6 @@
-package com.myexperiments.springmvc.controller;
+package domain.controller;
 
-import com.myexperiments.springmvc.exceptions.AppWideDuplicateSpitterException;
+import domain.exceptions.AppWideDuplicateSpitterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

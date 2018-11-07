@@ -1,16 +1,14 @@
-package com.myexperiments.springmvc.data.impl;
+package domain.service.impl;
 
-import com.myexperiments.springmvc.controller.Utils;
-import com.myexperiments.springmvc.data.SpitterRepository;
-import com.myexperiments.springmvc.exceptions.AppWideDuplicateSpitterException;
-import com.myexperiments.springmvc.exceptions.DuplicateSpitterException;
-import com.myexperiments.springmvc.model.Spitter;
+import domain.service.SpitterRepository;
+import domain.exceptions.AppWideDuplicateSpitterException;
+import domain.exceptions.DuplicateSpitterException;
+import domain.model.Spitter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Repository
 public class SpitterRepositoryImpl implements SpitterRepository {

@@ -2,7 +2,9 @@ package com.myexperiments.springmvc.configuration;
 
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -13,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
 
     /**
-     * Spring Security is extremely flexible and is capable of authenticating users against virtually any data store.
+     * Spring Security is extremely flexible and is capable of authenticating users against virtually any service store.
      *
      * In this case the Data Store is an in-memory DB.
      * */
@@ -23,6 +25,19 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
                 // the roles() method is a shortcut for the authorities() method
                 .withUser("user").password("password").roles("USER").and()
                 .withUser("admin").password("password").roles("USER", "ADMIN");
+    }
+
+    /**
+     * One can chain antMatchers and anyRequest at his own like, but they’ll be applied in the order given. For that
+     * reason, it is important to configure the most specific request path patterns first and the least specific ones
+     * (such as anyRequest() ) last.
+     * */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
+                .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
+                .anyRequest().permitAll(); // all the other request are not authenticated
     }
 
 }
