@@ -21,7 +21,10 @@
     <input type="submit" value="Register" />
 </form>--%>
 
-<!-- There must be an object in the model for the method whose key is spitter, or else the form won’t be able to render -->
+<!--
+There must be an object in the model for the method whose key is spitter, or else the form won’t be able to render.
+By making use of the sf prefix, the application is already secured against CSRF attacks.
+ -->
 <sf:form method="POST" commandName="spitter" action="/spitter/register">
 
     <%-- This one displays all the errors in a tab above the form --%>
