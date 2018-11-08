@@ -35,7 +35,7 @@ public class SpittleControllerTest {
         SpittleController controller = new SpittleController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/spittles.jsp"))
+                        new InternalResourceView("/WEB-INF/views/spittles.html"))
                 .build();
 
         // Assert 1st URL
@@ -68,7 +68,7 @@ public class SpittleControllerTest {
                 new SpittleController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
                 .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/spittles.jsp"))
+                        new InternalResourceView("/WEB-INF/views/spittles.html"))
                 .build();
         mockMvc.perform(get("/spittles?max=238900&count=20"))
                 .andExpect(view().name("spittles"))

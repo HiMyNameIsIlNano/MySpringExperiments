@@ -54,7 +54,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
         resolver.setPrefix("/WEB-INF/views/pages/");
-        resolver.setSuffix(".jsp");
+        resolver.setSuffix(".html");
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
     }

@@ -34,13 +34,28 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
      * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
-                .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
-                .anyRequest().permitAll()
+        http.formLogin() // It enables the default login page
                 .and()
-                .requiresChannel() // Use HTTPS
-                .antMatchers("/spitter/form").requiresSecure(); // all the other request are not authenticated
+                    /*
+                    * The following configuration demonstrates how to allow token based remember me authentication.
+                    * Upon authentication if the HTTP parameter named "remember-me" is sent, the user will be remembered
+                    * for a period of time given by the validityInSeconds parameter.
+                    * */
+                    .rememberMe()
+                    .tokenValiditySeconds(2419200) // Valid for 4 Weeks
+                    .key("spittrKey") // The password used to has the User's password into a cookie
+                .and()
+                    .logout()
+                    .logoutSuccessUrl("/")
+                    .logoutUrl("/signout")
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
+                    .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
+                    .anyRequest().permitAll()
+                .and()
+                    .requiresChannel() // Use HTTPS
+                    .antMatchers("/spitter/form").requiresSecure(); // all the other request are not authenticated
     }
 
 }
