@@ -19,6 +19,8 @@
     Username: <input type="text" firstName="username" /><br/>
     Password: <input type="password" firstName="password" /><br/>
     <input type="submit" value="Register" />
+    <!-- This prevents CSRF Attacks -->
+    <input type="hidden"name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>--%>
 
 <!-- There must be an object in the model for the method whose key is spitter, or else the form won’t be able to render -->
