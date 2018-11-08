@@ -7,7 +7,13 @@
           th:href="@{/webapp/static/css/style.css}"/>
 </head>
 <body>
-<form method="POST" th:object="${spitter}" action="/spitter/register" enctype="multipart/form-data">
+
+<!--
+The usage of th:action is made necessary to avoid CSRF attacks. Thymeleaf appends an hidden token to the HTTP
+request to be checked with the token owned by the application on the server. If the tokens march, then the request
+is forwarded to the application. An exception will be thrown otherwise.
+-->
+<form method="POST" th:object="${spitter}" th:action="{@/spitter/register}" enctype="multipart/form-data">
     <div class="errors" th:if="${#fields.hasErrors('*')}">
         <ul>
             <li th:each="err : ${#fields.errors('*')}"
