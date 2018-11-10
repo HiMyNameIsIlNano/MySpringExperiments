@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{pages/layout}">
 <head>
     <title>Spitter</title>
     <link rel="stylesheet"
@@ -7,7 +8,7 @@
           th:href="@{/webapp/static/css/style.css}"/>
 </head>
 <body onload='document.f.username.focus();'>
-<div id="header" th:include="page :: header"></div>
+<div layout:fragment="content"></div>
 <div id="content">
     <form name='f' th:action='@{/login}' method='POST'>
         <table>
@@ -24,20 +25,17 @@
                 <input name="submit" type="submit" value="Login"/></td>
             </tr>
             <tr>
-                <td>
-                    <!--/*
-                        Spring Docs excerpt: Upon authentication if the HTTP parameter named "remember-me" is sent,
-                        the user will be remembered.
-                    */-->
+                <!--/*          <td>
+                                  Spring Docs excerpt: Upon authentication if the HTTP parameter named "remember-me" is sent,
+                                  the user will be remembered.
                     <input id="remember_me" name="remember-me" type="checkbox"/>
                 </td>
                 <td>
                     <label for="remember_me" class="inline">Remember me</label>
-                </td>
+                </td>*/-->
             </tr>
         </table>
     </form>
 </div>
-<div id="footer" th:include="page :: copy"></div>
 </body>
 </html>
