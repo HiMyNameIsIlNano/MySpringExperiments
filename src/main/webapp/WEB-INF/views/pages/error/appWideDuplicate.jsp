@@ -4,7 +4,7 @@
     <title>Spittr</title>
     <link rel="stylesheet"
           type="text/css"
-          th:href="@{/webapp/static/css/style.css}"/>
+          th:href="@{/static/css/style.css}"/>
 </head>
 <body>
 <h1>(App Wide) Duplicated Spittr</h1>
