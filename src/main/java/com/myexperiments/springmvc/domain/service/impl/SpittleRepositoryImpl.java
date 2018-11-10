@@ -1,8 +1,8 @@
-package domain.service.impl;
+package com.myexperiments.springmvc.domain.service.impl;
 
-import domain.controller.Utils;
-import domain.service.SpittleRepository;
-import domain.model.Spittle;
+import com.myexperiments.springmvc.domain.controller.Utils;
+import com.myexperiments.springmvc.domain.service.SpittleRepository;
+import com.myexperiments.springmvc.domain.model.Spittle;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

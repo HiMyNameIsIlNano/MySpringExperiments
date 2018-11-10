@@ -1,7 +1,7 @@
 package com.myexperiments.springmvc.configuration;
 
-import domain.service.SpitterRepository;
-import domain.service.impl.SpitterUserServiceImpl;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
+import com.myexperiments.springmvc.domain.service.impl.SpitterUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;

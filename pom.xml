@@ -25,6 +25,8 @@
         <maven-war-plugin.version>2.4</maven-war-plugin.version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
 		<spring-security.version>4.2.9.RELEASE</spring-security.version>
+		<thymeleaf-extras-security.version>3.0.4.RELEASE</thymeleaf-extras-security.version>
+		<thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<dependencies>
@@ -117,6 +119,17 @@
             <artifactId>thymeleaf-spring3</artifactId>
             <version>${thymeleaf.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity3</artifactId>
+			<version>${thymeleaf-extras-security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
+
 
         <!-- Validaiton API -->
         <dependency>

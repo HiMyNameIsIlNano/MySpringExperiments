@@ -34,7 +34,8 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
      * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin() // It enables the default login page
+        http.formLogin()
+                .loginPage("/login") // It enables the default login page
                 .and()
                     /*
                     * The following configuration demonstrates how to allow token based remember me authentication.
@@ -55,7 +56,8 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll()
                 .and()
                     .requiresChannel() // Use HTTPS
-                    .antMatchers("/spitter/form").requiresSecure(); // all the other request are not authenticated
+                    .antMatchers("/spitter/form")
+                    .requiresSecure(); // all the other request are not authenticated
     }
 
 }

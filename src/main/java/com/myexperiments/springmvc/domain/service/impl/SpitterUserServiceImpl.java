@@ -1,7 +1,7 @@
-package domain.service.impl;
+package com.myexperiments.springmvc.domain.service.impl;
 
-import domain.model.Spitter;
-import domain.service.SpitterRepository;
+import com.myexperiments.springmvc.domain.model.Spitter;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

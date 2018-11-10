@@ -1,8 +1,8 @@
-package domain.controller;
+package com.myexperiments.springmvc.domain.controller;
 
-import domain.service.SpitterRepository;
-import domain.exceptions.DuplicateSpitterException;
-import domain.model.Spitter;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
+import com.myexperiments.springmvc.domain.exceptions.DuplicateSpitterException;
+import com.myexperiments.springmvc.domain.model.Spitter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

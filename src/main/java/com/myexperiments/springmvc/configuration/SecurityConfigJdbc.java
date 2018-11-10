@@ -1,17 +1,15 @@
 package com.myexperiments.springmvc.configuration;
 
-import domain.service.SpitterRepository;
-import domain.service.impl.SpitterUserServiceImpl;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
+import com.myexperiments.springmvc.domain.service.impl.SpitterUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import javax.sql.DataSource;
 import java.security.SecureRandom;

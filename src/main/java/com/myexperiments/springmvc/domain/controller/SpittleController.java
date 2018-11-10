@@ -1,8 +1,8 @@
-package domain.controller;
+package com.myexperiments.springmvc.domain.controller;
 
-import domain.service.SpittleRepository;
-import domain.exceptions.SpittleNotFoundException;
-import domain.model.Spittle;
+import com.myexperiments.springmvc.domain.service.SpittleRepository;
+import com.myexperiments.springmvc.domain.exceptions.SpittleNotFoundException;
+import com.myexperiments.springmvc.domain.model.Spittle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

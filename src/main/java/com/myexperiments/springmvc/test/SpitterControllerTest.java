@@ -1,8 +1,8 @@
 package com.myexperiments.springmvc.test;
 
-import domain.controller.SpitterController;
-import domain.service.SpitterRepository;
-import domain.model.Spitter;
+import com.myexperiments.springmvc.domain.controller.SpitterController;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
+import com.myexperiments.springmvc.domain.model.Spitter;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 

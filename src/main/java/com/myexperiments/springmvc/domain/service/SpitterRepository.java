@@ -1,6 +1,6 @@
-package domain.service;
+package com.myexperiments.springmvc.domain.service;
 
-import domain.model.Spitter;
+import com.myexperiments.springmvc.domain.model.Spitter;
 
 public interface SpitterRepository {
 
