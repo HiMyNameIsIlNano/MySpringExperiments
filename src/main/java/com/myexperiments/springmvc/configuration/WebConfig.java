@@ -22,7 +22,6 @@ import org.thymeleaf.templatemode.TemplateMode;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.myexperiments.springmvc")
-@PropertySource("classpath:beans-config.properties")
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;

@@ -2,6 +2,7 @@ package com.myexperiments.springmvc.configuration;
 
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
+@PropertySource("classpath:beans-config.properties")
 @Conditional(LdapCondition.class)
 public class SecurityConfigLdap extends WebSecurityConfigurerAdapter {
 
