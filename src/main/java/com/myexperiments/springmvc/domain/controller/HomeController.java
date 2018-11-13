@@ -18,13 +18,13 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String signIn() {
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String home() {
         return "home";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home() {
+    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    public String signIn() {
         return "home";
     }
 

@@ -5,6 +5,7 @@
       type="text/css"
       th:href="@{/static/css/style.css}"/>
 
+<body>
 <div th:if="${!spittleList.empty}">
     <li th:each="spittle : ${spittleList}">
         <div class="spittleMessage" th:text="${spittle.message}">Message</div>
@@ -18,6 +19,13 @@
         </div>
     </li>
 </div>
+<div th:if="${spittleList.empty}">
+    There are no spittles
+</div>
+
+<hr/>
+<a th:href="@{/home}">Home</a>
+</body>
 
 </html>
 

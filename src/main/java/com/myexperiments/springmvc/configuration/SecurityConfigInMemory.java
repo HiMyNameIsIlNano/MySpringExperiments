@@ -38,6 +38,7 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 .loginPage("/login") // It enables the default login page
+                .successForwardUrl("/home")
                 .and()
                     /*
                     * The following configuration demonstrates how to allow token based remember me authentication.
