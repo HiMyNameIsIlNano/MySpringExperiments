@@ -2,6 +2,7 @@ package com.myexperiments.springmvc.configuration;
 
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
+@PropertySource("classpath:beans-config.properties")
 // @EnableWebMvcSecurity this is deprecated and therefore the EnableWebSecurity will be used.
 @Conditional(InMemoryCondition.class)
 public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
@@ -33,18 +35,17 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
      * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+        http.formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/authenticate")
-                .permitAll()
+                .successForwardUrl("/home")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/home")
-                .permitAll();
+                .and()
+                .authorizeRequests()
+                .antMatchers("/", "/home")
+                .permitAll()
+                .anyRequest().authenticated();
     }
 
 }
