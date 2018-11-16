@@ -1,4 +1,4 @@
-package com.myexperiments.springmvc.configuration;
+package com.myexperiments.springmvc.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

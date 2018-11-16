@@ -1,6 +1,5 @@
 package com.myexperiments.springmvc.configuration;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.MultipartConfigElement;
@@ -30,25 +29,25 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     * In this case, it’s mapped to /, indicating that it will be the application’s default servlet.
     * It will handle all requests coming into the application.
     **/
+    /*
+     * Application Context Configuration (e.g. Back-End Beans)
+     * */
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class<?>[] { WebConfig.class };
+    }
+
+    /*
+     * Web Application Configuration (e.g. Controllers and Views)
+     * */
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return null;
+    }
+
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
-    }
-
-    /*
-    * Application Context Configuration (e.g. Back-End Beans)
-    * */
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class };
-    }
-
-    /*
-    * Web Application Configuration (e.g. Controllers and Views)
-    * */
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebConfig.class };
     }
 
     /*

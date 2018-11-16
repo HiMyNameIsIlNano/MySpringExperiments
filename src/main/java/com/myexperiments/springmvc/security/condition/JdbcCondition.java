@@ -1,10 +1,10 @@
-package com.myexperiments.springmvc.configuration;
+package com.myexperiments.springmvc.security.condition;
 
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.ConfigurationCondition;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class LdapCondition implements ConfigurationCondition {
+public class JdbcCondition implements ConfigurationCondition {
 
     @Override
     public ConfigurationPhase getConfigurationPhase() {
@@ -13,6 +13,6 @@ public class LdapCondition implements ConfigurationCondition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        return "LDAP".equals(conditionContext.getEnvironment().getProperty("store.type"));
+        return "JDBC".equals(conditionContext.getEnvironment().getProperty("store.type"));
     }
 }

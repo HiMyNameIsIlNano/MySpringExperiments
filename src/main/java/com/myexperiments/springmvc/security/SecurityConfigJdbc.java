@@ -1,5 +1,6 @@
-package com.myexperiments.springmvc.configuration;
+package com.myexperiments.springmvc.security;
 
+import com.myexperiments.springmvc.security.condition.JdbcCondition;
 import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import com.myexperiments.springmvc.domain.service.impl.SpitterUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

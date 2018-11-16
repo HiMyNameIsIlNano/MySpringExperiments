@@ -1,5 +1,6 @@
-package com.myexperiments.springmvc.configuration;
+package com.myexperiments.springmvc.security;
 
+import com.myexperiments.springmvc.security.condition.InMemoryCondition;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

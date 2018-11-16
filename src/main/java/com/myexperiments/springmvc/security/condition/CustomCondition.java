@@ -1,4 +1,4 @@
-package com.myexperiments.springmvc.configuration;
+package com.myexperiments.springmvc.security.condition;
 
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.ConfigurationCondition;
