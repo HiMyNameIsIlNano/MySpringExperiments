@@ -3,6 +3,8 @@ package com.myexperiments.springmvc.domain.service.impl;
 import com.myexperiments.springmvc.domain.controller.Utils;
 import com.myexperiments.springmvc.domain.service.SpittleRepository;
 import com.myexperiments.springmvc.domain.model.Spittle;
+import com.myexperiments.springmvc.security.condition.InMemoryCondition;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class SpittleRepositoryImpl implements SpittleRepository {
+@Conditional(InMemoryCondition.class)
+public class InMemorySpittleRepositoryImpl implements SpittleRepository {
 
     private List<Spittle> spittles = new ArrayList<>();
 
@@ -31,6 +34,12 @@ public class SpittleRepositoryImpl implements SpittleRepository {
                 .filter(spittle -> spittle.getId() == id)
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public Spittle addSpittle(Spittle spittle) {
+        spittles.add(spittle);
+        return spittle;
     }
 
 }

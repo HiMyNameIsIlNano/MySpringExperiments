@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface SpittleRepository {
 
+    Spittle addSpittle(Spittle spittle);
+
     /*
     * The findSpittles() method takes two parameters. The max parameter is a Spittle ID
     * that represents the maximum ID of any Spittle that should be returned. As for the

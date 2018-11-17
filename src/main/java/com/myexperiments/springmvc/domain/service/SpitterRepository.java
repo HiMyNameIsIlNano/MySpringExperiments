@@ -7,4 +7,6 @@ public interface SpitterRepository {
     Spitter save(Spitter spitter);
 
     Spitter findByUserName(String user);
+
+    Spitter findById(Long id);
 }

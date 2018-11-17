@@ -1,6 +1,8 @@
 package com.myexperiments.springmvc.configuration;
 
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
@@ -20,6 +22,16 @@ public class DataSourceConfiguration {
                 .addScript("db/sql/schema.sql")
                 .addScript("db/sql/test-data.sql")
                 .build();
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
+        return new NamedParameterJdbcTemplate(dataSource);
     }
 
 }

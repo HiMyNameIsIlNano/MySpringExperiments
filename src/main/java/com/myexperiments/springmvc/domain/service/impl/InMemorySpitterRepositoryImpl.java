@@ -4,14 +4,21 @@ import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import com.myexperiments.springmvc.domain.exceptions.AppWideDuplicateSpitterException;
 import com.myexperiments.springmvc.domain.exceptions.DuplicateSpitterException;
 import com.myexperiments.springmvc.domain.model.Spitter;
+import com.myexperiments.springmvc.security.condition.InMemoryCondition;
+import com.myexperiments.springmvc.security.condition.JdbcCondition;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class SpitterRepositoryImpl implements SpitterRepository {
+@Conditional(InMemoryCondition.class)
+public class InMemorySpitterRepositoryImpl implements SpitterRepository {
 
     private List<Spitter> spitterList = new ArrayList<>();
 
@@ -41,6 +48,14 @@ public class SpitterRepositoryImpl implements SpitterRepository {
     public Spitter findByUserName(String user) {
         return spitterList.stream()
                 .filter(spitter -> user.equals(spitter.getUsername()))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public Spitter findById(Long id) {
+        return spitterList.stream()
+                .filter(spitter -> Objects.equals(id, spitter.getId()))
                 .findFirst()
                 .orElse(null);
     }
