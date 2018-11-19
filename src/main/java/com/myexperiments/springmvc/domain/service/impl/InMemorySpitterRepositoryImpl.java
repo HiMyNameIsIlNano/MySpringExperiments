@@ -1,14 +1,11 @@
 package com.myexperiments.springmvc.domain.service.impl;
 
-import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import com.myexperiments.springmvc.domain.exceptions.AppWideDuplicateSpitterException;
 import com.myexperiments.springmvc.domain.exceptions.DuplicateSpitterException;
 import com.myexperiments.springmvc.domain.model.Spitter;
+import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import com.myexperiments.springmvc.security.condition.InMemoryCondition;
-import com.myexperiments.springmvc.security.condition.JdbcCondition;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
-import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
