@@ -2,7 +2,7 @@ package com.myexperiments.springmvc.security;
 
 import com.myexperiments.springmvc.domain.service.SpitterRepository;
 import com.myexperiments.springmvc.domain.service.impl.SpitterUserServiceImpl;
-import com.myexperiments.springmvc.security.condition.HibernateCondition;
+import com.myexperiments.springmvc.security.condition.JpaCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import java.security.SecureRandom;
 @Configuration
 @EnableWebSecurity
 @PropertySource("classpath:beans-config.properties")
-@Conditional(HibernateCondition.class)
+@Conditional(JpaCondition.class)
 public class SecurityConfigJdbc extends WebSecurityConfigurerAdapter {
 
     @Autowired

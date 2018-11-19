@@ -4,7 +4,9 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.ConfigurationCondition;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class HibernateCondition implements ConfigurationCondition {
+public class ApplicationManagedEntityManagerFactoryCondition implements ConfigurationCondition {
+
+    private static final String PROPERTY_NAME = "entity.manager.factory.bean.management.type.condition";
 
     @Override
     public ConfigurationPhase getConfigurationPhase() {
@@ -13,6 +15,6 @@ public class HibernateCondition implements ConfigurationCondition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        return "HIBERNATE".equals(conditionContext.getEnvironment().getProperty("store.type"));
+        return "APPLICATION_MANAGED".equals(conditionContext.getEnvironment().getProperty(PROPERTY_NAME));
     }
 }

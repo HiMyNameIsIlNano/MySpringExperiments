@@ -28,6 +28,8 @@
         <thymeleaf-extras-security.version>3.0.4.RELEASE</thymeleaf-extras-security.version>
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         <h2.version>1.4.197</h2.version>
+        <javax.persistence-api.version>2.2</javax.persistence-api.version>
+        <spring-data-jpa.version>2.1.2.RELEASE</spring-data-jpa.version>
     </properties>
 
     <dependencies>
@@ -57,6 +59,12 @@
             <artifactId>spring-orm</artifactId>
             <version>${springframework.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -115,7 +123,6 @@
             <version>${h2.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -128,11 +135,18 @@
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.13.Final</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>${javax.persistence-api.version}</version>
         </dependency>
 
         <!-- MySQL
