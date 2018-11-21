@@ -24,6 +24,7 @@ public class DataSourceConfiguration {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder
                 .setType(EmbeddedDatabaseType.H2)
+                .setName("appdb")
                 .addScript("db/sql/schema.sql")
                 .addScript("db/sql/test-data.sql")
                 .build();
