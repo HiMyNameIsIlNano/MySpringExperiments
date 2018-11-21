@@ -40,10 +40,12 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
      * */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
-                .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
-                .anyRequest().permitAll()
+        http.csrf()
+            .ignoringAntMatchers("/console/**") // This is needed to access the H2 Console
+            .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
             .and()
                 .formLogin()
                 .loginPage("/login") // It enables the default login page
@@ -61,6 +63,11 @@ public class SecurityConfigInMemory extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/")
                 .logoutUrl("/signout")
+            .and()
+                .authorizeRequests()
+                    .antMatchers("/spitters/me").hasRole("SPITTER") // /spitters/me can only be accessed by Users with role SPITTER. The ROLE_ prefix is automatically prepended.
+                    .antMatchers(HttpMethod.POST, "/spittles").authenticated() // POST to /spittles must be authenticated
+                    .anyRequest().permitAll()
             .and()
                 .requiresChannel() // Use HTTPS
                 .antMatchers("/spitter/form")

@@ -1,8 +1,11 @@
 package com.myexperiments.springmvc.configuration;
 
+import org.h2.server.web.WebServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 /*
@@ -61,6 +64,15 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
                         MAX_FILE_SIZE,
                         MAX_REQUEST_SIZE,
                         FILE_SIZE_THRESHOLD));
+    }
+
+    // http://localhost:8080/console/
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("h2-console", new WebServlet());
+        servlet.setLoadOnStartup(2);
+        servlet.addMapping("/console/*");
     }
 
 }
