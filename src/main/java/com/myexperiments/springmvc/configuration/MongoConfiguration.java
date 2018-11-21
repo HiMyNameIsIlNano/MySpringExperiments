@@ -9,6 +9,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import java.io.IOException;
 
+/*
+* Enabled Spring Data’s automatic Mongo repository generation with the @EnableMongoRepositories annotation.
+* Rather than declare the bean below directly, the configuration class could extend AbstractMongoConfiguration and
+* override its getDatabaseName() and mongo() methods. However, as we will be using an in-memory Mongo DB we will not
+* do so.
+*/
 @Configuration
 @EnableMongoRepositories(basePackages="com.myexperiments.*")
 public class MongoConfiguration {
@@ -16,6 +22,10 @@ public class MongoConfiguration {
     private static final String MONGO_DB_URL = "localhost";
     private static final String MONGO_DB_NAME = "OrdersDB";
 
+    /**
+     * Even if one never use MongoTemplate directly, the bean is needed because the automatically generated
+     * repositories will use it under the covers.
+     */
     @Bean
     public MongoTemplate mongoTemplate() throws IOException {
         EmbeddedMongoFactoryBean mongo = new EmbeddedMongoFactoryBean();
