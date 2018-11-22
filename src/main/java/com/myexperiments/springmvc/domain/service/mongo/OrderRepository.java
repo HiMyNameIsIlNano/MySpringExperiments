@@ -1,4 +1,4 @@
-package com.myexperiments.springmvc.domain.service;
+package com.myexperiments.springmvc.domain.service.mongo;
 
 import com.myexperiments.springmvc.domain.model.Order;
 import org.springframework.data.mongodb.repository.MongoRepository;
