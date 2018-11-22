@@ -1,9 +1,12 @@
 package com.myexperiments.springmvc.configuration;
 
 import com.mongodb.MongoClient;
+import com.myexperiments.springmvc.configuration.condition.MongoDbCondition;
 import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -16,7 +19,10 @@ import java.io.IOException;
 * do so.
 */
 @Configuration
-@EnableMongoRepositories(basePackages="com.myexperiments.*")
+@PropertySource("classpath:beans-config.properties")
+@Conditional(MongoDbCondition.class)
+@EnableMongoRepositories(basePackages="com.myexperiments.springmvc.domain.service.mongo.*",
+        repositoryImplementationPostfix="Impl")
 public class MongoConfiguration {
 
     private static final String MONGO_DB_URL = "localhost";
