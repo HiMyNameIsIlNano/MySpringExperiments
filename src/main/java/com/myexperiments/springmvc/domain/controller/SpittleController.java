@@ -50,7 +50,7 @@ public class SpittleController {
     /*
     * Query Parameters are always Strings
     * */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "spittle-paged", method = RequestMethod.GET)
     public List<Spittle> spittles(@RequestParam(value = "max", defaultValue = "100") long max,
                                   @RequestParam(value = "count", defaultValue = "20") int count ) {
         return spittleRepository.findSpittles(max, count);
