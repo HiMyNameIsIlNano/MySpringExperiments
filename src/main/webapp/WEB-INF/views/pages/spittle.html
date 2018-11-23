@@ -1,10 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<link rel="stylesheet"
-      type="text/css"
-      th:href="@{/static/css/style.css}"/>
-
+<head>
+    <title>Spittr</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/static/css/style.css}"/>
+</head>
 <body>
     <div class="spittleView">
         <div class="spittleMessage" th:text="${spittle.message}" />
