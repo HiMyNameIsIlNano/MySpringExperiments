@@ -59,7 +59,7 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(
-                new MultipartConfigElement("/usr/home/User/Development/spring/uploads",
+                new MultipartConfigElement("/tmp/uploads",
                         MAX_FILE_SIZE,
                         MAX_REQUEST_SIZE,
                         FILE_SIZE_THRESHOLD));
