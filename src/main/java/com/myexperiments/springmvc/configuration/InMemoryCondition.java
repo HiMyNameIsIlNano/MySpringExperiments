@@ -13,8 +13,7 @@ public class InMemoryCondition implements ConfigurationCondition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        String storeType = conditionContext.getEnvironment().getProperty("store.type");
-        return storeType == null || "IN_MEMORY".equals(storeType);
+        return "IN_MEMORY".equals(conditionContext.getEnvironment().getProperty("store.type"));
     }
 
 }
