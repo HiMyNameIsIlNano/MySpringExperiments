@@ -70,6 +70,7 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
 			<version>${apachetiles.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
@@ -99,6 +100,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -146,24 +153,14 @@
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
-
-                <!--<plugin>
-                    <groupId>org.codehaus.cargo</groupId>
-                    <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.6.11</version>
-                    <configuration>
-                        <container>
-                            <containerId>tomcat8x</containerId>
-                            <type>installed</type>
-                            <home>/home/user/.tomcat8/apache-tomcat-8.0.43</home>
-                        </container>
-                        <configuration>
-                            <type>existing</type>
-                            <home>/home/user/.tomcat8/apache-tomcat-8.0.43</home>
-                        </configuration>
-                    </configuration>
-                </plugin>-->
-
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<path>/</path>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<finalName>MySpringExperiments</finalName>
