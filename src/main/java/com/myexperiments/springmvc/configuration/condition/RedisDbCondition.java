@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.ConfigurationCondition;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-public class Neo4JDbCondition implements ConfigurationCondition {
+public class RedisDbCondition implements ConfigurationCondition {
 
     private static final String DB_TYPE = "db.type";
 
@@ -15,7 +15,7 @@ public class Neo4JDbCondition implements ConfigurationCondition {
 
     @Override
     public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
-        return "NEO4J".equals(conditionContext.getEnvironment().getProperty(DB_TYPE));
+        return "REDIS".equals(conditionContext.getEnvironment().getProperty(DB_TYPE));
     }
     
 }

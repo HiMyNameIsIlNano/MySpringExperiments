@@ -30,12 +30,7 @@
         <h2.version>1.4.197</h2.version>
         <javax.persistence-api.version>2.2</javax.persistence-api.version>
         <spring-data-jpa.version>2.1.2.RELEASE</spring-data-jpa.version>
-        <mongo-embedded.version>2.1.1</mongo-embedded.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <spring-data-mongodb.version>2.1.2.RELEASE</spring-data-mongodb.version>
-        <spring-data-neo4j.version>5.1.2.RELEASE</spring-data-neo4j.version>
-        <neo4j-ogm-test.version>3.1.2</neo4j-ogm-test.version>
-        <neo4j-ogm-embedded-driver.version>3.1.2</neo4j-ogm-embedded-driver.version>
     </properties>
 
     <dependencies>
@@ -154,40 +149,13 @@
             <version>${javax.persistence-api.version}</version>
         </dependency>
 
-        <!-- Mongo in Memory -->
+        <!-- Redis -->
         <dependency>
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-mongodb</artifactId>
-            <version>${spring-data-mongodb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>de.flapdoodle.embed</groupId>
-            <artifactId>de.flapdoodle.embed.mongo</artifactId>
-            <version>${mongo-embedded.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cz.jirutka.spring</groupId>
-            <artifactId>embedmongo-spring</artifactId>
-            <version>RELEASE</version>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-jpa.version}</version>
         </dependency>
 
-        <!-- Neo4J -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-neo4j</artifactId>
-            <version>${spring-data-neo4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-embedded-driver</artifactId>
-            <version>${neo4j-ogm-embedded-driver.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-ogm-test</artifactId>
-            <version>${neo4j-ogm-test.version}</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- SLF4J/Logback -->
         <dependency>
