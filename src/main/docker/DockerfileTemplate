@@ -1,0 +1,10 @@
+FROM openjdk
+
+VOLUME /${volumeDir}
+
+# Search for the jar artifact under the /target/docker/../maven directory
+ADD maven/${fileName}.jar ${fileName}.jar
+
+RUN sh -c 'touch /${fileName}.jar'
+
+ENTRYPOINT ["java","-Djava.security.egd=/dev/./urandom","-jar","/${fileName}.jar"]
