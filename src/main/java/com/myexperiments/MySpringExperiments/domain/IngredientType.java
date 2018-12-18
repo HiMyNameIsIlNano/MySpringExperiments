@@ -1,4 +1,4 @@
-package com.myexperiments.MySpringExperiments.model;
+package com.myexperiments.MySpringExperiments.domain;
 
 public enum IngredientType {
 

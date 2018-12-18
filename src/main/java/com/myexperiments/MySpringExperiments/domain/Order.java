@@ -1,4 +1,4 @@
-package com.myexperiments.MySpringExperiments.model;
+package com.myexperiments.MySpringExperiments.domain;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -6,9 +6,13 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
+import java.util.List;
 
 @Data
 public class Order {
+
+    private Long id;
 
     // Must not be null and must contain at least one non-whitespace character
     @NotBlank(message = "Name must be set")
@@ -35,6 +39,11 @@ public class Order {
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 
-    //private List<Pizza> order;
+    private List<Pizza> designePizza;
 
+    private Date placedAt;
+
+    public void addDesignedPizza(Pizza savedPizza) {
+        this.designePizza.add(savedPizza);
+    }
 }
