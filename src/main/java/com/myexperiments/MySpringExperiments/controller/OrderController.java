@@ -1,7 +1,7 @@
 package com.myexperiments.MySpringExperiments.controller;
 
 import com.myexperiments.MySpringExperiments.domain.Order;
-import com.myexperiments.MySpringExperiments.repository.JdbcOrderRepository;
+import com.myexperiments.MySpringExperiments.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +21,10 @@ import javax.validation.Valid;
 @RequestMapping("/orders")
 public class OrderController {
 
-    private JdbcOrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
-    public OrderController(JdbcOrderRepository orderRepository) {
+    public OrderController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
