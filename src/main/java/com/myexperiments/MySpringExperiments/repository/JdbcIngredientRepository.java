@@ -29,11 +29,10 @@ public class JdbcIngredientRepository implements IngredientRepository {
     public Ingredient findOne(String id) {
         return jdbc.queryForObject(
                 "select id, name, type from Ingredient where id=?",
-                (resultSet, i) -> Ingredient.builder()
-                        .id(resultSet.getString("id"))
-                        .name(resultSet.getString("name"))
-                        .type(IngredientType.valueOf(resultSet.getString("type")))
-                        .build());
+                (resultSet, i) -> new Ingredient(resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        IngredientType.valueOf(resultSet.getString("type")))
+        );
     }
 
     @Override
@@ -47,11 +46,9 @@ public class JdbcIngredientRepository implements IngredientRepository {
     }
 
     private Ingredient mapRowToIngredient(ResultSet resultSet, int i) throws SQLException {
-        return Ingredient.builder()
-                .id(resultSet.getString("id"))
-                .name(resultSet.getString("name"))
-                .type(IngredientType.valueOf(resultSet.getString("type")))
-                .build();
+        return new Ingredient(resultSet.getString("id"),
+                resultSet.getString("name"),
+                IngredientType.valueOf(resultSet.getString("type")));
     }
 
 }

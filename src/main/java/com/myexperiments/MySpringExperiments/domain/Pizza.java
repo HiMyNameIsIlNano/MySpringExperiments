@@ -1,19 +1,13 @@
 package com.myexperiments.MySpringExperiments.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Slf4j
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Pizza {
 
     private Long id;
@@ -23,8 +17,12 @@ public class Pizza {
     private String name;
 
     @Size(min = 1, message = "You must choose at least one ingredient")
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
 
     private Date createdAt;
+
+    public void addIngredients(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
+    }
 
 }

@@ -1,14 +1,14 @@
 package com.myexperiments.MySpringExperiments.domain;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@Builder
+@RequiredArgsConstructor
 public class Ingredient {
 
-    private String id;
-    private String name;
-    private IngredientType type;
+    private final String id;
+    private final String name;
+    private final IngredientType type;
 
 }

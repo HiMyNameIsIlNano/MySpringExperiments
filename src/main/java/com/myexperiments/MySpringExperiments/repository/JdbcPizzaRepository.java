@@ -1,5 +1,6 @@
 package com.myexperiments.MySpringExperiments.repository;
 
+import com.myexperiments.MySpringExperiments.domain.Ingredient;
 import com.myexperiments.MySpringExperiments.domain.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +20,6 @@ import java.util.Optional;
 @Repository
 public class JdbcPizzaRepository implements PizzaRepository {
 
-    private static final String INSERT_SQL = "insert into Pizza (name, createdAt) values (?, ?)";
     private JdbcTemplate jdbc;
 
     @Autowired
@@ -34,7 +34,7 @@ public class JdbcPizzaRepository implements PizzaRepository {
         if (pizzaId.isPresent()) {
             Long id = pizzaId.get();
             pizza.setId(id);
-            for (String ingredient : pizza.getIngredients()) {
+            for (Ingredient ingredient : pizza.getIngredients()) {
                 saveIngredientToPizza(ingredient, id);
             }
         }
@@ -61,11 +61,11 @@ public class JdbcPizzaRepository implements PizzaRepository {
         return key != null ? Optional.of(key.longValue()) : Optional.empty();
     }
 
-    private void saveIngredientToPizza(String ingredientId, long pizzaId) {
+    private void saveIngredientToPizza(Ingredient ingredientId, long pizzaId) {
         jdbc.update(
                 "insert into Pizza_Ingredients (pizzaId, ingredientId) " +
                         "values (?, ?)",
-                pizzaId, ingredientId);
+                pizzaId, ingredientId.getId());
     }
 
 }
