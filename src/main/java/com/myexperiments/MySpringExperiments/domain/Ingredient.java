@@ -2,19 +2,19 @@ package com.myexperiments.MySpringExperiments.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@Builder
 @RequiredArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @Entity
 public class Ingredient {
 
     @Id
-    private String id;
-    private String name;
-    private IngredientType type;
+    private final String id;
+    private final String name;
+
+    @Enumerated(EnumType.STRING)
+    private final IngredientType type;
 
 }

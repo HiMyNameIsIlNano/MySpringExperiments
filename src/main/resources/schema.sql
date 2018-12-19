@@ -7,7 +7,7 @@ create table if not exists INGREDIENT (
 create table if not exists PIZZA (
     id identity,
     name varchar(25) not null,
-    createdAt timestamp not null
+    created_at timestamp not null
 );
 
 create table if not exists PIZZA_INGREDIENTS (
@@ -15,26 +15,26 @@ create table if not exists PIZZA_INGREDIENTS (
     ingredient_id varchar(5) not null
 );
 
-alter table PIZZA_INGREDIENTS add foreign key (pizzaId) references PIZZA(id);
-alter table PIZZA_INGREDIENTS add foreign key (ingredientId) references INGREDIENT(id);
+alter table PIZZA_INGREDIENTS add foreign key (pizza_id) references PIZZA(id);
+alter table PIZZA_INGREDIENTS add foreign key (ingredient_id) references INGREDIENT(id);
 
 create table if not exists PIZZA_ORDER (
     id identity,
-    deliveryName varchar(50) not null,
-    deliveryStreet varchar(50) not null,
-    deliveryCity varchar(50) not null,
-    deliveryState varchar(2) not null,
-    deliveryZip varchar(10) not null,
-    ccNumber varchar(16) not null,
-    ccExpiration varchar(5) not null,
-    ccCVV varchar(3) not null,
-    placedAt timestamp not null
+    delivery_name varchar(50) not null,
+    delivery_street varchar(50) not null,
+    delivery_city varchar(50) not null,
+    delivery_state varchar(2) not null,
+    delivery_zip varchar(10) not null,
+    cc_number varchar(16) not null,
+    cc_expiration varchar(5) not null,
+    cc_cvv varchar(3) not null,
+    placed_at timestamp not null
 );
 
 create table if not exists PIZZA_ORDER_PIZZAS (
-    orderId bigint not null,
-    pizzaId bigint not null
+    order_id bigint not null,
+    pizza_id bigint not null
 );
 
-alter table PIZZA_ORDER_PIZZAS add foreign key (orderId) references PIZZA_ORDER(id);
-alter table PIZZA_ORDER_PIZZAS add foreign key (pizzaId) references PIZZA(id);
+alter table PIZZA_ORDER_PIZZAS add foreign key (order_id) references PIZZA_ORDER(id);
+alter table PIZZA_ORDER_PIZZAS add foreign key (pizza_id) references PIZZA(id);

@@ -34,21 +34,21 @@ displayed the form the /design path
                 These fields in the form correspond directly to the ingredients properties of the Pizza class.
                 */
                 -->
-                <input name="ingredients" type="checkbox" th:value="${ingredient}"/>
+                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/>
             </div>
         </div>
         <div class="ingredient-group" id="cheeses">
             <h3>Choose your Cheese:</h3>
             <div th:each="ingredient : ${cheese}">
-                <input name="ingredients" type="checkbox" th:value="${ingredient}"/>
+                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/>
             </div>
         </div>
         <div class="ingredient-group" id="toppings">
             <h3>Determine your Toppings:</h3>
             <div th:each="ingredient : ${topping}">
-                <input name="ingredients" type="checkbox" th:value="${ingredient}"/>
+                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/>
             </div>
         </div>

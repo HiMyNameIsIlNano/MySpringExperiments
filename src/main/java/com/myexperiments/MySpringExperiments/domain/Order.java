@@ -17,7 +17,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // Must not be null and must contain at least one non-whitespace character
@@ -43,6 +43,7 @@ public class Order {
     private String ccExpiration;
 
     @Digits(integer=3, fraction=0, message="Invalid CVV")
+    @Column(name = "CC_CVV")
     private String ccCVV;
 
     @ManyToMany(targetEntity=Pizza.class)

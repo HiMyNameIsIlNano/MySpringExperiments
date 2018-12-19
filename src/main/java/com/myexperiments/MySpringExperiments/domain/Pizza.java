@@ -17,7 +17,7 @@ import java.util.List;
 public class Pizza {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -26,8 +26,13 @@ public class Pizza {
 
     @ManyToMany(targetEntity=Ingredient.class)
     @Size(min = 1, message = "You must choose at least one ingredient")
+    @JoinTable(name = "PIZZA_INGREDIENTS",
+            joinColumns = @JoinColumn(name = "PIZZA_ID"),
+            inverseJoinColumns = @JoinColumn(name = "INGREDIENT_ID")
+    )
     private List<Ingredient> ingredients;
 
+    @Column(name = "CREATED_AT")
     private Date createdAt;
 
     @PrePersist
