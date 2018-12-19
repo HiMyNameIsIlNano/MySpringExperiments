@@ -32,14 +32,13 @@ public class JdbcOrderRepository implements OrderRepository {
         this.objectMapper = new ObjectMapper();
     }
 
-
     @Override
     public Order save(Order order) {
         order.setPlacedAt(new Date());
         long orderId = saveOrderDetails(order);
         order.setId(orderId);
 
-        List<Pizza> pizzas = order.getDesignePizza();
+        List<Pizza> pizzas = order.getDesignedPizza();
         for (Pizza pizza : pizzas) {
             savePizzaToOrder(pizza, orderId);
         }

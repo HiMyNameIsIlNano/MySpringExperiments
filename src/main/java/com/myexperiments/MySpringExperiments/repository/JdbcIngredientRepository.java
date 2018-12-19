@@ -29,9 +29,11 @@ public class JdbcIngredientRepository implements IngredientRepository {
     public Ingredient findOne(String id) {
         return jdbc.queryForObject(
                 "select id, name, type from Ingredient where id=?",
-                (resultSet, i) -> new Ingredient(resultSet.getString("id"),
+                (resultSet, i) -> new Ingredient(
+                        resultSet.getString("id"),
                         resultSet.getString("name"),
-                        IngredientType.valueOf(resultSet.getString("type")))
+                        IngredientType.valueOf(resultSet.getString("type"))),
+                id
         );
     }
 

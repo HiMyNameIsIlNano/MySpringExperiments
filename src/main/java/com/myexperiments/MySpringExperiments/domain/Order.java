@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,19 +17,19 @@ public class Order {
 
     // Must not be null and must contain at least one non-whitespace character
     @NotBlank(message = "Name must be set")
-    private String name;
+    private String deliveryName;
 
     @NotBlank(message = "Street must be set")
-    private String street;
+    private String deliveryStreet;
 
     @NotBlank(message = "City must be set")
-    private String city;
+    private String deliveryCity;
 
     @NotBlank(message = "State must be set")
-    private String state;
+    private String deliveryState;
 
     @NotBlank(message = "Zip must be set")
-    private String zip;
+    private String deliveryZip;
 
     @CreditCardNumber(message = "Credit Card Number must be well formed")
     private String ccNumber;
@@ -39,11 +40,11 @@ public class Order {
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 
-    private List<Pizza> designePizza;
+    private List<Pizza> designedPizza = new ArrayList<>();
 
     private Date placedAt;
 
     public void addDesignedPizza(Pizza savedPizza) {
-        this.designePizza.add(savedPizza);
+        this.designedPizza.add(savedPizza);
     }
 }
