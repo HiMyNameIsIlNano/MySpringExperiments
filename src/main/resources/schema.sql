@@ -11,8 +11,8 @@ create table if not exists PIZZA (
 );
 
 create table if not exists PIZZA_INGREDIENTS (
-    pizzaId bigint not null,
-    ingredientId varchar(4) not null
+    pizza_id bigint not null,
+    ingredient_id varchar(5) not null
 );
 
 alter table PIZZA_INGREDIENTS add foreign key (pizzaId) references PIZZA(id);
