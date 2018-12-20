@@ -57,13 +57,30 @@ public class JdbcSecurityConfig extends WebSecurityConfigurerAdapter {
         */
     }
 
+    /**
+     * Security rules declared first take precedence over those declared lower down. In this case, switching the antMatchers
+     * rules would make the complete application accessible without any login.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/design", "/orders")
-                .hasRole("ROLE_USER")
-                .antMatchers("/", "/**").permitAll()
-        ;
+                .hasRole("USER") // Role should not start with 'ROLE_' since it is automatically prepended by Spring Security.
+                .antMatchers("/", "/**")
+                .permitAll()
+            .and() // The previous section is finished and here a new one starts. THe order in this case is not relevant.
+                .formLogin()
+                /*
+                * By default, Spring Security listens for login requests at /login and expects that the username and password fields
+                * be named username and password. It is however possible to override this behaviour (see below).
+                */
+                .loginPage("/login")
+                .loginProcessingUrl("/authenticate")
+                .usernameParameter("username") // If the usernamne Field is name differently in the login page, it can be redefined here.
+                .passwordParameter("password")// If the password Field is name differently in the login page, it can be redefined here.
+            .and()
+                .logout()
+                .logoutSuccessUrl("/");
     }
 
 }
