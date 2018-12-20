@@ -1,0 +1,22 @@
+dn: ou=groups,dc=pizzacloud,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+dn: ou=people,dc=pizzacloud,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+dn: uid=user,ou=people,dc=pizzacloud,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: User Dummy
+sn: Dummy
+uid: user
+userPassword: user
+dn: cn=pizzacloud,ou=groups,dc=pizzacloud,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: pizzacloud
+member: uid=user,ou=people,dc=pizzacloud,dc=com

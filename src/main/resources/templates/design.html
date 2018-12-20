@@ -25,7 +25,7 @@ displayed the form the /design path
           th:if="${#fields.hasErrors('ingredients')}"
           th:errors="*{ingredients}">Ingredient Error</span>
 
-    <div class="grid">
+    <div class="grid" th:if="${!#fields.hasErrors('ingredients')}">
         <div class="ingredient-group" id="doughs">
             <h3>Pick your Dough:</h3>
             <div th:each="ingredient : ${dough}">
@@ -53,7 +53,7 @@ displayed the form the /design path
             </div>
         </div>
     </div>
-    <div>
+    <div th:if="!${#fields.hasErrors('ingredients')}">
         <h3>Name your Pizza creation:</h3>
         <!--
         /*
