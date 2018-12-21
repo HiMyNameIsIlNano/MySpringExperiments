@@ -8,19 +8,20 @@
     Static content in a Spring Boot application is served from the /static directory at the root of the classpath
     */
     -->
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
 <h1>Design your pizza!</h1>
 <img th:src="@{/images/MyLogo.png}"/>
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form>
 <!--
 /*
-The <form> does not declare an action attribute. This means that when the form is submitted, the browser will gather up
-all the data in the form and send it to the server in an HTTP POST request to the same path for which a GET request
-displayed the form the /design path
+The <form> MUST declare an action attribute otherwise Spring Security won't allow the request to be forwarded.
 */
 -->
-<form method="POST" th:object="${designedPizza}">
+<form th:method="POST" th:action="@{/design}" th:object="${designedPizza}">
     <span class="validationError"
           th:if="${#fields.hasErrors('ingredients')}"
           th:errors="*{ingredients}">Ingredient Error</span>

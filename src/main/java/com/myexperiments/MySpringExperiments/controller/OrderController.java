@@ -1,9 +1,11 @@
 package com.myexperiments.MySpringExperiments.controller;
 
 import com.myexperiments.MySpringExperiments.domain.Order;
+import com.myexperiments.MySpringExperiments.domain.UserAccount;
 import com.myexperiments.MySpringExperiments.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,10 +35,16 @@ public class OrderController {
      * /templates/ and postfixing it with .html
      * */
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid Order order,
+                               Errors errors,
+                               SessionStatus sessionStatus,
+                               @AuthenticationPrincipal UserAccount userAccount) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+
+        // This binds the User to the Order.
+        order.setUser(userAccount);
 
         log.info("Order submitted: " + order);
         orderRepository.save(order);
@@ -50,8 +58,17 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public String orderForm(Model model) {
-        //model.addAttribute("order", new Order());
+    public String orderForm(Model model,
+                            @AuthenticationPrincipal UserAccount userAccount) {
+        Order order = new Order();
+
+        // This pre-populates the User Details once the User Lands on the Order Page.
+        order.setDeliveryName(userAccount.getFullname());
+        order.setDeliveryStreet(userAccount.getStreet());
+        order.setDeliveryCity(userAccount.getCity());
+        order.setDeliveryState(userAccount.getState());
+        order.setDeliveryZip(userAccount.getZip());
+        model.addAttribute("order", order);
         return "orderForm";
     }
 

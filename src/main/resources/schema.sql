@@ -28,6 +28,7 @@ create table if not exists PIZZA_ORDER (
     cc_number varchar(16) not null,
     cc_expiration varchar(5) not null,
     cc_cvv varchar(3) not null,
+    user_id bigint not null,
     placed_at timestamp not null
 );
 

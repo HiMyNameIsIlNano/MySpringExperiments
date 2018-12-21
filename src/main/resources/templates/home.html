@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Pizza Cloud Application</title>
@@ -10,7 +10,12 @@
         The image is referenced with the context-relative path /images/MyLogo.png
     */-->
     <img th:src="@{/images/MyLogo.png}"/>
-    <br/>
+    <div sec:authorize="isAuthenticated()">
+        <form method="POST" th:action="@{/logout}" id="logoutForm">
+            <input type="submit" value="Logout"/>
+        </form>
+        <br/>
+    </div>
     <a th:href="@{/design}">Order a Pizza</a>
 </body>
 </html>

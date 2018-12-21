@@ -53,6 +53,12 @@ public class Order {
     )
     private List<Pizza> designedPizza = new ArrayList<>();
 
+    /*
+    * An Order is assigned to a User, but a User can have entered more Orders.
+    * */
+    @ManyToOne
+    private UserAccount user;
+
     private Date placedAt;
 
     public void addDesignedPizza(Pizza savedPizza) {

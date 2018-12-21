@@ -38,5 +38,5 @@ insert into USER_ACCOUNT (username, password, fullname, street, city, state, zip
   , 1
 );
 
-insert into USER_AUTHORITIES (username, authority) values ('user', 'user');
-insert into USER_AUTHORITIES (username, authority) values ('admin', 'admin');
+insert into USER_AUTHORITIES (username, authority) values ('user', 'ROLE_USER');
+insert into USER_AUTHORITIES (username, authority) values ('admin', 'ROLE_ADMIN');

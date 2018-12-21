@@ -63,11 +63,14 @@ public class JdbcSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeRequests()/*
                 .antMatchers("/design", "/orders")
                 .hasRole("USER") // Role should not start with 'ROLE_' since it is automatically prepended by Spring Security.
                 .antMatchers("/", "/**")
-                .permitAll()
+                .permitAll()*/
+                .antMatchers("/design", "/orders")
+                .access("hasRole('ROLE_USER')")
+                .antMatchers("/", "/**").access("permitAll")
             .and() // The previous section is finished and here a new one starts. THe order in this case is not relevant.
                 .formLogin()
                 /*
@@ -80,7 +83,14 @@ public class JdbcSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")// If the password Field is name differently in the login page, it can be redefined here.
             .and()
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")// Make H2-Console non-secured; for debug purposes
+            .and()
+                .csrf()
+                .ignoringAntMatchers("/h2-console/**")
+            .and()
+                .headers()
+                .frameOptions() // Allow pages to be loaded in frames from the same origin; needed for H2-Console
+                .sameOrigin();
     }
 
 }
