@@ -1,14 +1,14 @@
 package com.myexperiments.MySpringExperiments.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
 @EnableWebSecurity
-@Profile(value = "IN_MEMORY")
+@ConditionalOnProperty(name = "pizza.security.config", havingValue = "IN_MEMORY")
 public class InMemorySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
