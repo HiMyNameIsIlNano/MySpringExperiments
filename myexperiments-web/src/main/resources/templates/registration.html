@@ -1,68 +1,47 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Pizza Cloud Application</title>
-</head>
-<body>
-<h1>Register</h1>
-<img th:src="@{/images/MyLogo.png}"/>
-<form method="POST" th:action="@{/register}" id="registerForm">
-    <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('username')}"
-          th:errors="*{username}">Username Error</span>
-
-    <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('password')}"
-          th:errors="*{password}">Password Error</span>
-
-    <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirmedPassword"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('confirmedPassword')}"
-          th:errors="*{confirmedPassword}">Password Error</span>
-
-    <label for="fullname">Full name: </label>
-    <input type="text" name="fullname"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('fullname')}"
-          th:errors="*{fullname}">Fullname Error</span>
-
-    <label for="street">Street: </label>
-    <input type="text" name="street"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('street')}"
-          th:errors="*{street}">Street Error</span>
-
-    <label for="city">City: </label>
-    <input type="text" name="city"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('city')}"
-          th:errors="*{city}">City Error</span>
-
-    <label for="state">State: </label>
-    <input type="text" name="state"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('state')}"
-          th:errors="*{state}">State Error</span>
-
-    <label for="zip">Zip: </label>
-    <input type="text" name="zip"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('zip')}"
-          th:errors="*{zip}">Zip Error</span>
-
-    <label for="phone">Phone: </label>
-    <input type="text" name="phone"/><br/>
-    <span class="validationError"
-          th:if="${#fields.hasErrors('phone')}"
-          th:errors="*{phone}">Phone Error</span>
-
-    <input type="submit" value="Register"/>
-</form>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout.html}">
+  <head>
+    <title>Pizza Cloud</title>
+  </head>
+  
+  <body>
+    <section layout:fragment="main" class="content">
+      <h1>Register</h1>
+      
+      <form method="POST" th:action="@{/register}" id="registerForm">
+      
+          <label for="username">Username: </label>
+          <input type="text" name="username"/><br/>
+  
+          <label for="password">Password: </label>
+          <input type="password" name="password"/><br/>
+  
+          <label for="confirm">Confirm password: </label>
+          <input type="password" name="confirm"/><br/>
+  
+          <label for="fullname">Full name: </label>
+          <input type="text" name="fullname"/><br/>
+      
+          <label for="street">Street: </label>
+          <input type="text" name="street"/><br/>
+      
+          <label for="city">City: </label>
+          <input type="text" name="city"/><br/>
+      
+          <label for="state">State: </label>
+          <input type="text" name="state"/><br/>
+      
+          <label for="zip">Zip: </label>
+          <input type="text" name="zip"/><br/>
+      
+          <label for="phone">Phone: </label>
+          <input type="text" name="phone"/><br/>
+      
+          <input type="submit" value="Register"/>
+      </form>
+    </section>
+  </body>
 </html>

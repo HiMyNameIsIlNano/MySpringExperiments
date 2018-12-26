@@ -1,21 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Pizza Cloud Application</title>
-</head>
-<body>
-    <h1>Welcome to my Pizza Application</h1>
-    <!--/*
-        The image is referenced with the context-relative path /images/MyLogo.png
-    */-->
-    <img th:src="@{/images/MyLogo.png}"/>
-    <div sec:authorize="isAuthenticated()">
-        <form method="POST" th:action="@{/logout}" id="logoutForm">
-            <input type="submit" value="Logout"/>
-        </form>
-        <br/>
-    </div>
-    <a th:href="@{/design}">Order a Pizza</a>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout.html}">
+  <head>
+    <title>Pizza Cloud</title>
+    <script th:src="@{/scripts/recents.js}"></script>
+  </head>
+  
+  <body>
+    <section layout:fragment="main" class="content">	    
+	    <a th:href="@{/design}" id="design">Design a pizza</a>
+	    
+	    <div id="recents"></div>
+	</section>    
+  </body>
 </html>

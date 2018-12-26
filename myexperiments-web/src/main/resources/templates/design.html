@@ -1,70 +1,65 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout.html}">
 <head>
-    <title>Pizza Cloud Application</title>
-    <!--
-    /*
-    Static content in a Spring Boot application is served from the /static directory at the root of the classpath
-    */
-    -->
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+<title>Pizza Cloud</title>
+<script th:src="@{/scripts/ingredients.js}"></script>
 </head>
-<body>
-<h1>Design your pizza!</h1>
-<img th:src="@{/images/MyLogo.png}"/>
-<form method="POST" th:action="@{/logout}" id="logoutForm">
-    <input type="submit" value="Logout"/>
-</form>
-<!--
-/*
-The <form> MUST declare an action attribute otherwise Spring Security won't allow the request to be forwarded.
-*/
--->
-<form th:method="POST" th:action="@{/design}" th:object="${designedPizza}">
-    <span class="validationError"
-          th:if="${#fields.hasErrors('ingredients')}"
-          th:errors="*{ingredients}">Ingredient Error</span>
 
-    <div class="grid" th:if="${!#fields.hasErrors('ingredients')}">
-        <div class="ingredient-group" id="doughs">
-            <h3>Pick your Dough:</h3>
-            <div th:each="ingredient : ${dough}">
-                <!--
-                /*
-                These fields in the form correspond directly to the ingredients properties of the Pizza class.
-                */
-                -->
-                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
+<body>
+  <section layout:fragment="main" class="content">
+    <h1>Design your pizza!</h1>
+    <h2>
+      Feelin' hungry, <span sec:authentication="principal.fullname">NAME</span>?
+    </h2>
+
+    <form th:method="POST" 
+          th:object="${design}" 
+          th:action="@{/design}"
+          id="pizzaForm">
+
+      <span class="validationError"
+        th:if="${#fields.hasErrors('ingredients')}"
+        th:errors="*{ingredients}">Ingredient Error</span>
+
+      <div class="grid">
+        <div class="ingredient-group">
+          <h3>Designate your wrap:</h3>
+          <div id="wraps"></div>
         </div>
-        <div class="ingredient-group" id="cheeses">
-            <h3>Choose your Cheese:</h3>
-            <div th:each="ingredient : ${cheese}">
-                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
+
+        <div class="ingredient-group">
+          <h3>Pick your protein:</h3>
+          <div id="proteins"></div>
         </div>
-        <div class="ingredient-group" id="toppings">
-            <h3>Determine your Toppings:</h3>
-            <div th:each="ingredient : ${topping}">
-                <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-                <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-            </div>
+
+        <div class="ingredient-group">
+          <h3>Choose your cheese:</h3>
+          <div id="cheeses"></div>
         </div>
-    </div>
-    <div th:if="!${#fields.hasErrors('ingredients')}">
-        <h3>Name your Pizza creation:</h3>
-        <!--
-        /*
-        These fields in the form correspond directly to the name property of the Pizza class.
-        */
-        -->
-        <input type="text" th:field="*{name}"/>
-        <br/>
-        <button>Submit your Pizza</button>
-    </div>
-</form>
+
+        <div class="ingredient-group">
+          <h3>Determine your veggies:</h3>
+          <div id="veggies"></div>
+        </div>
+
+        <div class="ingredient-group">
+          <h3>Select your sauce:</h3>
+          <div id="sauces"></div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Name your pizza creation:</h3>
+        <input type="text" th:field="*{name}" /> <span
+          class="validationError" th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}">Name Error</span> <br />
+
+        <button>Submit your pizza</button>
+      </div>
+    </form>
+  </section>
 </body>
 </html>

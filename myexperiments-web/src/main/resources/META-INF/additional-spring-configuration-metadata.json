@@ -1,14 +1,12 @@
-{
-  "properties": [
-    {
-      "name": "pizza.security.config",
-      "type": "java.lang.String",
-      "description": "Defines the type of Security Config to be activated (e.g. in memory, jdbc, ldap, etc.)."
-    },
-    {
-      "name": "pizza.orders.page-size",
-      "type": "java.lang.String",
-      "description": "Sets the maximum number of orders to display in a list."
-    }
-  ]
-}
+{"properties": [
+  {
+    "name": "pizza.orders.page-size",
+    "type": "java.lang.String",
+    "description": "Sets the maximum number of orders to display in a list."
+  },
+  {
+    "name": "pizza.discount.codes",
+    "type": "java.util.Map<String, Integer>",
+    "description": "A map of discount codes to a discount percentage."
+  }
+]}

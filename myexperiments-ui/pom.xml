@@ -10,8 +10,8 @@
     <name>myexperiments-ui</name>
 
     <parent>
-        <artifactId>MySpringExperiments</artifactId>
-        <groupId>com.myexperiments</groupId>
+      <groupId>myexperiments</groupId>
+      <artifactId>pizza-cloud-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

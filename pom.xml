@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.myexperiments</groupId>
-	<artifactId>MySpringExperiments</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>MySpringExperiments</name>
-	<description>Demo project for Spring Boot</description>
-	<packaging>pom</packaging>
+    <groupId>myexperiments</groupId>
+  	<artifactId>pizza-cloud-parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.1.RELEASE</version>
-		<relativePath/>
-	</parent>
+    <parent>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-parent</artifactId>
+  		<version>2.1.1.RELEASE</version>
+  		<relativePath/>
+  	</parent>
 
-	<properties>
-		<java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <pizzacloud.version>${project.version}</pizzacloud.version>
+    <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <pizzacloud.version>${project.version}</pizzacloud.version>
     </properties>
 
-	<modules>
-        <module>myexperiments-cloudapp</module>
-        <module>myexperiments-web</module>
-        <module>myexperiments-ui</module>
+    <modules>
+      <module>myexperiments</module>
+      <module>myexperiments-api</module>
+      <module>myexperiments-data</module>
+      <module>myexperiments-domain</module>
+      <module>myexperiments-security</module>
+      <module>myexperiments-web</module>
+      <module>myexperiments-ui</module>
     </modules>
 
 </project>

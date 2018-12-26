@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <name>myexperiments-web</name>
 
     <artifactId>myexperiments-web</artifactId>
     <packaging>jar</packaging>
 
+    <name>myexperiments-web</name>
+    <description>Pizza Cloud Web</description>
+
     <parent>
-        <artifactId>MySpringExperiments</artifactId>
-        <groupId>com.myexperiments</groupId>
+        <groupId>myexperiments</groupId>
+        <artifactId>pizza-cloud-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <dependencies>
-        <!--
-        Spring Boot starter dependencies are special in that they typically don’t have any library code themselves,
-        but instead transitively pull in other libraries like:
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
 
-        1. Spring’s MVC framework
-        2. Embedded Tomcat
-        3. Thymeleaf and the Thymeleaf layout dialect
-        -->
+    <dependencies>
+        <!-- PizzaCloud dependencies -->
+        <dependency>
+            <groupId>myexperiments</groupId>
+            <artifactId>myexperiments-data</artifactId>
+            <version>${pizzacloud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>myexperiments</groupId>
+            <artifactId>myexperiments-domain</artifactId>
+            <version>${pizzacloud.version}</version>
+        </dependency>
+
+        <!-- Necessary Boot starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -32,34 +44,39 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- It brings in Spring Data JPA, and transitively includes Hibernate as the JPA implementation -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
 
+        <!-- Misc -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.3.1</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.webjars</groupId>
+            <artifactId>mustachejs</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
-        <!-- Test dependencies
+        <!-- Test dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -75,7 +92,13 @@
             <artifactId>htmlunit-driver</artifactId>
             <scope>test</scope>
         </dependency>
-        -->
+
+        <!-- For the sake of the configuration properties class -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 </project>
