@@ -12,21 +12,20 @@ import pizza.Pizza;
 @Configuration
 public class SpringDataRestConfiguration {
 
-  @Bean
-  public ResourceProcessor<PagedResources<Resource<Pizza>>>
+    @Bean
+    public ResourceProcessor<PagedResources<Resource<Pizza>>>
     pizzaProcessor(EntityLinks links) {
 
-    return new ResourceProcessor<PagedResources<Resource<Pizza>>>() {
-      @Override
-      public PagedResources<Resource<Pizza>> process(
-                          PagedResources<Resource<Pizza>> resource) {
-        resource.add(
-            links.linkFor(Pizza.class)
-                 .slash("recent")
-                 .withRel("recents"));
-        return resource;
-      }
-    };
-  }
-  
+        return new ResourceProcessor<PagedResources<Resource<Pizza>>>() {
+            @Override
+            public PagedResources<Resource<Pizza>> process(PagedResources<Resource<Pizza>> resource) {
+                resource.add(
+                        links.linkFor(Pizza.class)
+                                .slash("recent")
+                                .withRel("recents"));
+                return resource;
+            }
+        };
+    }
+
 }

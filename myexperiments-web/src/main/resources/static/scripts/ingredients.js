@@ -3,10 +3,9 @@ $(document).ready(function() {
     url : "/ingredients?byType"
   }).then(function(data) {
     $.get('mustache/ingredients.mst', function(template) {
-      $('#wraps').html(Mustache.render(template, data.wrap))
-      $('#proteins').html(Mustache.render(template, data.protein))
+      $('#doughs').html(Mustache.render(template, data.dough));
+      $('#toppings').html(Mustache.render(template, data.topping));
       $('#cheeses').html(Mustache.render(template, data.cheese));
-      $('#veggies').html(Mustache.render(template, data.veggies));
       $('#sauces').html(Mustache.render(template, data.sauce));
     });
   });

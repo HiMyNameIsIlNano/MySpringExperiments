@@ -40,24 +40,27 @@
 			<version>${pizzacloud.version}</version>
 		</dependency>
 
-		<!-- Necessary Boot starters -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--
+			By simply having the Spring Data REST starter in the build, the application gets auto-configuration
+			that enables automatic creation of a REST API for any repositories that were created by Spring Data
+			(including Spring Data JPA, Spring Data Mongo, and so on). Spring Data REST also exposes a home resource
+			that has links for all exposed endpoints. The APIs are reachable at the following URL: localhost:8080/api
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 
-		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

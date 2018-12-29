@@ -1,5 +1,6 @@
 package pizza.web.api;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import pizza.Order;
 import pizza.data.OrderRepository;
 
+@Slf4j
 @RestController
-@RequestMapping(path="/orders",
-                produces="application/json")
+@RequestMapping(path="/orders", produces="application/json")
 @CrossOrigin(origins="*")
-public class OrderApiController {
+public class OrderController {
 
   private OrderRepository repo;
 
-  public OrderApiController(OrderRepository repo) {
+  public OrderController(OrderRepository repo) {
     this.repo = repo;
   }
   
@@ -76,13 +77,19 @@ public class OrderApiController {
     }
     return repo.save(order);
   }
-  
+
+  /**
+   * There’s no need to communicate any resource data back to the client for a resource that no longer exists. Therefore
+   * a Response Status of 204 is used in this case.
+   * */
   @DeleteMapping("/{orderId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteOrder(@PathVariable("orderId") Long orderId) {
     try {
       repo.deleteById(orderId);
-    } catch (EmptyResultDataAccessException e) {}
+    } catch (EmptyResultDataAccessException e) {
+      log.info("Order with id {0}, was not found.", orderId);
+    }
   }
 
 }

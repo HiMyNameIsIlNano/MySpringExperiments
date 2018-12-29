@@ -10,61 +10,80 @@ import pizza.data.IngredientRepository;
 import pizza.data.PizzaRepository;
 import pizza.data.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Profile("!prod")
 @Configuration
 public class DevelopmentConfig {
 
-  @Bean
-  public CommandLineRunner dataLoader(IngredientRepository repo,
-        UserRepository userRepo, PasswordEncoder encoder, PizzaRepository pizzaRepository) { // user repo for ease of testing with a built-in user
-    return new CommandLineRunner() {
-      @Override
-      public void run(String... args) throws Exception {
-        Ingredient flourTortilla = new Ingredient("FLTO", "Flour Tortilla", Type.WRAP);
-        Ingredient cornTortilla = new Ingredient("COTO", "Corn Tortilla", Type.WRAP);
-        Ingredient groundBeef = new Ingredient("GRBF", "Ground Beef", Type.PROTEIN);
-        Ingredient carnitas = new Ingredient("CARN", "Carnitas", Type.PROTEIN);
-        Ingredient tomatoes = new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES);
-        Ingredient lettuce = new Ingredient("LETC", "Lettuce", Type.VEGGIES);
-        Ingredient cheddar = new Ingredient("CHED", "Cheddar", Type.CHEESE);
-        Ingredient jack = new Ingredient("JACK", "Monterrey Jack", Type.CHEESE);
-        Ingredient salsa = new Ingredient("SLSA", "Salsa", Type.SAUCE);
-        Ingredient sourCream = new Ingredient("SRCR", "Sour Cream", Type.SAUCE);
-        repo.save(flourTortilla);
-        repo.save(cornTortilla);
-        repo.save(groundBeef);
-        repo.save(carnitas);
-        repo.save(tomatoes);
-        repo.save(lettuce);
-        repo.save(cheddar);
-        repo.save(jack);
-        repo.save(salsa);
-        repo.save(sourCream);
-        
-        
-        userRepo.save(new User("habuma", encoder.encode("password"), 
-            "Craig Walls", "123 North Street", "Cross Roads", "TX", 
-            "76227", "123-123-1234"));
-        
-        Pizza pizza1 = new Pizza();
-        pizza1.setName("Carnivore");
-        pizza1.setIngredients(Arrays.asList(flourTortilla, groundBeef, carnitas, sourCream, salsa, cheddar));
-        pizzaRepository.save(pizza1);
+    @Bean
+    public CommandLineRunner dataLoader(IngredientRepository ingredientRepository,
+                                        UserRepository userRepository,
+                                        PasswordEncoder encoder,
+                                        PizzaRepository pizzaRepository) { // user ingredientRepository for ease of testing with a built-in user
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... args) throws Exception {
+                List<Ingredient> ingredientList = new ArrayList<>();
+                ingredientList.add(new Ingredient("SOURD", "Sourdough", Type.DOUGH));
+                ingredientList.add(new Ingredient("NORMD", "Normal Dough", Type.DOUGH));
+                ingredientList.add(new Ingredient("MOZZ", "Mozzarella Cheese", Type.CHEESE));
+                ingredientList.add(new Ingredient("PARMC", "Parmesan Cheese", Type.CHEESE));
+                ingredientList.add(new Ingredient("SMOKC", "Smoked Cheese", Type.CHEESE));
+                ingredientList.add(new Ingredient("EGGP", "Eggplants", Type.TOPPINGS));
+                ingredientList.add(new Ingredient("ZUCCH", "Zucchini", Type.TOPPINGS));
+                ingredientList.add(new Ingredient("HAM", "Ham", Type.TOPPINGS));
+                ingredientList.add(new Ingredient("SSAL", "Spicy Salami", Type.TOPPINGS));
+                ingredientList.add(new Ingredient("PHAM", "Parma Ham", Type.TOPPINGS));
+                ingredientList.add(new Ingredient("TOMS", "Tomato Sauce", Type.SAUCE));
+                ingredientList.add(new Ingredient("NOSAUCE", "No Sauce", Type.SAUCE));
+                for (Ingredient ingredient : ingredientList) {
+                    ingredientRepository.save(ingredient);
+                }
 
-        Pizza pizza2 = new Pizza();
-        pizza2.setName("Bovine Bounty");
-        pizza2.setIngredients(Arrays.asList(cornTortilla, groundBeef, cheddar, jack, sourCream));
-        pizzaRepository.save(pizza2);
+                userRepository.save(new User("user", encoder.encode("user"),
+                        "A User 1", "A Street 1", "City 1", "IT",
+                        "999", "123-123-1234"));
+                userRepository.save(new User("admin", encoder.encode("admin"),
+                        "An Admin 2", "A Street 2", "City 2", "IT",
+                        "999", "123-123-1234"));
 
-        Pizza pizza3 = new Pizza();
-        pizza3.setName("Veg-Out");
-        pizza3.setIngredients(Arrays.asList(flourTortilla, cornTortilla, tomatoes, lettuce, salsa));
-        pizzaRepository.save(pizza3);
+                List<Pizza> pizzas = new ArrayList<>();
+                Pizza bestPizza = new Pizza();
+                bestPizza.setName("Best Pizza");
+                bestPizza.setIngredients(Arrays.asList(
+                        new Ingredient("SOURD", "Sourdough", Type.DOUGH),
+                        new Ingredient("MOZZ", "Mozzarella Cheese", Type.CHEESE),
+                        new Ingredient("PARMC", "Parmesan Cheese", Type.CHEESE),
+                        new Ingredient("EGGP", "Eggplants", Type.TOPPINGS),
+                        new Ingredient("TOMS", "Tomato Sauce", Type.SAUCE)));
+                pizzas.add(bestPizza);
 
-      }
-    };
-  }
-  
+                Pizza normalPizza = new Pizza();
+                normalPizza.setName("Normal Pizza");
+                normalPizza.setIngredients(Arrays.asList(
+                        new Ingredient("NORMD", "Normal Dough", Type.DOUGH),
+                        new Ingredient("MOZZ", "Mozzarella Cheese", Type.CHEESE),
+                        new Ingredient("SSAL", "Spicy Salami", Type.TOPPINGS),
+                        new Ingredient("TOMS", "Tomato Sauce", Type.SAUCE)));
+                pizzas.add(normalPizza);
+
+                Pizza margherita = new Pizza();
+                margherita.setName("Margherita");
+                margherita.setIngredients(Arrays.asList(
+                        new Ingredient("NORMD", "Normal Dough", Type.DOUGH),
+                        new Ingredient("MOZZ", "Mozzarella Cheese", Type.CHEESE),
+                        new Ingredient("TOMS", "Tomato Sauce", Type.SAUCE)));
+                pizzas.add(margherita);
+
+                for (Pizza pizza : pizzas) {
+                    pizzaRepository.save(pizza);
+                }
+
+            }
+        };
+    }
+
 }

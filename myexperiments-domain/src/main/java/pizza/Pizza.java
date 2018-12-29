@@ -17,7 +17,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@RestResource(rel= "pizza", path= "pizza")
+/*
+* The @RestResource annotation lets you give the entity any relation name and path you want. This also sorts out the
+* path for the endpoint so that you can issue requests against /api/pizzas to work with pizza resources.
+*/
+@RestResource(rel= "pizzas", path= "pizzas")
 public class Pizza {
 
   @Id

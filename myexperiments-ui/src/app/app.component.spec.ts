@@ -16,8 +16,8 @@ import {ApiService} from './api/ApiService';
 import {RecentPizzasService} from './recents/recent-pizzas.service';
 import {SpecialsComponent} from './specials/specials.component';
 import {CloudTitleComponent} from './cloud-title/cloudtitle.component';
-import {NonWrapsPipe} from './recents/NonWrapsPipe';
-import {WrapsPipe} from './recents/WrapsPipe';
+import {NonDoughsPipe} from './recents/non-doughs.pipe';
+import {DoughPipe} from './recents/DoughPipe';
 import {DesignComponent} from './design/design.component';
 import {GroupBoxComponent} from './group-box/groupbox.component';
 import {BigButtonComponent} from './big-button/bigbutton.component';
@@ -45,8 +45,8 @@ describe('AppComponent', () => {
         CloudTitleComponent,
         DesignComponent,
         CartComponent,
-        NonWrapsPipe,
-        WrapsPipe,
+        NonDoughsPipe,
+        DoughPipe,
         GroupBoxComponent,
         BigButtonComponent,
         LittleButtonComponent,

@@ -145,13 +145,13 @@ public class DesignAndOrderPizzaBrowserTest {
     List<WebElement> ingredientGroups = browser.findElementsByClassName("ingredient-group");
     assertEquals(5, ingredientGroups.size());
 
-    WebElement wrapGroup = browser.findElementByCssSelector("div.ingredient-group#wraps");
+    WebElement wrapGroup = browser.findElementByCssSelector("div.ingredient-group#doughs");
     List<WebElement> wraps = wrapGroup.findElements(By.tagName("div"));
     assertEquals(2, wraps.size());
     assertIngredient(wrapGroup, 0, "FLTO", "Flour Tortilla");
     assertIngredient(wrapGroup, 1, "COTO", "Corn Tortilla");
 
-    WebElement proteinGroup = browser.findElementByCssSelector("div.ingredient-group#proteins");
+    WebElement proteinGroup = browser.findElementByCssSelector("div.ingredient-group#toppings");
     List<WebElement> proteins = proteinGroup.findElements(By.tagName("div"));
     assertEquals(2, proteins.size());
     assertIngredient(proteinGroup, 0, "GRBF", "Ground Beef");

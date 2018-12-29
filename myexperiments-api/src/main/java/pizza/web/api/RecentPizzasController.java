@@ -26,18 +26,16 @@ public class RecentPizzasController {
 
   @GetMapping(path="/pizzas/recent", produces="application/hal+json")
   public ResponseEntity<Resources<PizzaResource>> recentPizzas() {
-    PageRequest page = PageRequest.of(
-                          0, 12, Sort.by("createdAt").descending());
+    PageRequest page = PageRequest.of(0, 12, Sort.by("createdAt").descending());
     List<Pizza> pizzas = pizzaRepository.findAll(page).getContent();
 
-    List<PizzaResource> pizzaResources =
-        new PizzaResourceAssembler().toResources(pizzas);
-    Resources<PizzaResource> recentResources =
-            new Resources<PizzaResource>(pizzaResources);
+    List<PizzaResource> pizzaResources = new PizzaResourceAssembler().toResources(pizzas);
+    Resources<PizzaResource> recentResources = new Resources<>(pizzaResources);
     
     recentResources.add(
         linkTo(methodOn(RecentPizzasController.class).recentPizzas())
             .withRel("recents"));
+
     return new ResponseEntity<>(recentResources, HttpStatus.OK);
   }
 

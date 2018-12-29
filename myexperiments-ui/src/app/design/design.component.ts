@@ -18,9 +18,8 @@ export class DesignComponent implements OnInit {
   };
 
   allIngredients: any;
-  wraps = [];
-  proteins = [];
-  veggies = [];
+  doughs = [];
+  toppings = [];
   cheeses = [];
   sauces = [];
 
@@ -32,9 +31,8 @@ export class DesignComponent implements OnInit {
     this.httpClient.get('http://localhost:8080/ingredientsx')
         .subscribe(data => {
           this.allIngredients = data;
-          this.wraps = this.allIngredients.filter(w => w.type === 'WRAP');
-          this.proteins = this.allIngredients.filter(p => p.type === 'PROTEIN');
-          this.veggies = this.allIngredients.filter(v => v.type === 'VEGGIES');
+          this.doughs = this.allIngredients.filter(w => w.type === 'DOUGH');
+          this.toppings = this.allIngredients.filter(p => p.type === 'TOPPINGS');
           this.cheeses = this.allIngredients.filter(c => c.type === 'CHEESE');
           this.sauces = this.allIngredients.filter(s => s.type === 'SAUCE');
         });
