@@ -18,8 +18,8 @@ public class PizzaResourceAssembler extends ResourceAssemblerSupport<Pizza, Pizz
   }
 
   /**
-   * Creates a TacoResource object from a Taco, and to automatically give it a self link with the URL being derived
-   * from the Taco object’s id property.
+   * Creates a PizzaResource object from a Pizza, and to automatically give it a self link with the URL being derived
+   * from the Pizza object’s id property.
    *
    * toResource() is intended not only to create the Resource object, but also to populate it with links. Under the
    * covers, toResource() will call instantiateResource() .

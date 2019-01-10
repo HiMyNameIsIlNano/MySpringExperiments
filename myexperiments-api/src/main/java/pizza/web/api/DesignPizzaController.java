@@ -23,7 +23,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  * @RestController is a stereotype annotation like @Controller and @Service that marks a class for discovery by component
  * scanning. But most relevant to the discussion of REST, the @RestController annotation tells Spring that all handler
  * methods in the controller should have their return value written directly to the body of the response, rather than being
- * carried in the model to a view for rendering. Alternatively, one could have annotated DesignTacoController with @Controller,
+ * carried in the model to a view for rendering. Alternatively, one could have annotated DesignPizzaController with @Controller,
  * just like with any Spring MVC controller but then one would need to also annotate all of the handler methods with
  * @ResponseBody to achieve the same result.
  * */
