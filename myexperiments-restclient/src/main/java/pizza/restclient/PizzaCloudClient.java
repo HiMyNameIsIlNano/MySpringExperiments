@@ -47,24 +47,24 @@ public class PizzaCloudClient {
     /*
      * Specify parameters with a map
      */
-    // public Ingredient getIngredientById(String ingredientId) {
-    //   Map<String, String> urlVariables = new HashMap<>();
-    //   urlVariables.put("id", ingredientId);
-    //   return rest.getForObject("http://localhost:8080/ingredients/api/{id}",
-    //       Ingredient.class, urlVariables);
-    // }
+    /*public Ingredient getIngredientById(String ingredientId) {
+        Map<String, String> urlVariables = new HashMap<>();
+        urlVariables.put("id", ingredientId);
+        return rest.getForObject("http://localhost:8080/ingredients/api/{id}",
+                Ingredient.class, urlVariables);
+    }*/
 
     /*
      * Request with URI instead of String
      */
-    // public Ingredient getIngredientById(String ingredientId) {
-    //   Map<String, String> urlVariables = new HashMap<>();
-    //   urlVariables.put("id", ingredientId);
-    //   URI url = UriComponentsBuilder
-    //             .fromHttpUrl("http://localhost:8080/ingredients/api/{id}")
-    //             .build(urlVariables);
-    //   return rest.getForObject(url, Ingredient.class);
-    // }
+    /*public Ingredient getIngredientById(String ingredientId) {
+        Map<String, String> urlVariables = new HashMap<>();
+        urlVariables.put("id", ingredientId);
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/ingredients/api/{id}")
+                .build(urlVariables);
+        return rest.getForObject(url, Ingredient.class);
+    }*/
 
     /*
      * Use getForEntity() instead of getForObject()
@@ -133,11 +133,12 @@ public class PizzaCloudClient {
     //
     public Iterable<Ingredient> getAllIngredientsWithTraverson() {
         /*
-        * Java type erasure makes it difficult to provide type information for a generic type. Creating a
-        * ParameterizedTypeReference helps avoid deserialization issues.
-        * */
+         * Java type erasure makes it difficult to provide type information for a generic type. Creating a
+         * ParameterizedTypeReference helps avoid deserialization issues.
+         * */
         ParameterizedTypeReference<Resources<Ingredient>> ingredientType =
-                new ParameterizedTypeReference<Resources<Ingredient>>() {};
+                new ParameterizedTypeReference<Resources<Ingredient>>() {
+                };
 
         /*
          * By calling the follow() method on the Traverson object, you can navigate to the resource whose link’s
@@ -154,10 +155,10 @@ public class PizzaCloudClient {
     /**
      * When one needs to both navigate an API and update or delete resources, it is necessary to use RestTemplate and
      * Traverson together.
-     *
+     * <p>
      * Traverson can still be used to navigate to the link where a new resource will be created. Then RestTemplate can
      * be given that link to do a POST, PUT, DELETE or any other HTTP request one needs.
-     * */
+     */
     public Ingredient addIngredient(Ingredient ingredient) {
         String ingredientsUrl = traverson
                 .follow("ingredients")
@@ -170,7 +171,8 @@ public class PizzaCloudClient {
     }
 
     public Iterable<Pizza> getRecentPizzasWithTraverson() {
-        ParameterizedTypeReference<Resources<Pizza>> pizzaType = new ParameterizedTypeReference<Resources<Pizza>>() {};
+        ParameterizedTypeReference<Resources<Pizza>> pizzaType = new ParameterizedTypeReference<Resources<Pizza>>() {
+        };
 
         Resources<Pizza> pizzaResource =
                 traverson
@@ -179,10 +181,10 @@ public class PizzaCloudClient {
                         .toObject(pizzaType);
 
         // Alternatively, list the two paths in the same call to follow()
-//    Resources<Pizza> pizzaResource =
-//        traverson
-//          .follow("tacos", "recents")
-//          .toObject(pizzaType);
+        /*Resources<Pizza> pizzaResource =
+                traverson
+                        .follow("pizza", "recents")
+                        .toObject(pizzaType);*/
 
         return pizzaResource.getContent();
     }

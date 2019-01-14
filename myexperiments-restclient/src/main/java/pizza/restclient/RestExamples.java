@@ -141,8 +141,8 @@ public class RestExamples {
     return args -> {
       Iterable<Pizza> recentPizzas = pizzaCloudClient.getRecentPizzasWithTraverson();
       log.info("----------------------- GET RECENT PIZZAS WITH TRAVERSON -------------------------");
-      for (Pizza taco : recentPizzas) {
-        log.info("   -  " + taco);
+      for (Pizza pizza : recentPizzas) {
+        log.info("   -  " + pizza);
       }
     };
   }
