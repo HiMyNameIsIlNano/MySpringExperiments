@@ -41,7 +41,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- It brings in Spring Data JPA, and transitively includes Hibernate as the JPA implementation -->
+		<!--
+		It brings in Spring Data JPA, and transitively includes Hibernate as the JPA implementation. If one wants
+		to use a different JPA implementation, then it will be necesessary to exclude the Hibernate dependency and
+		include the JPA library one wants (e.g. Eclipse Links).
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
