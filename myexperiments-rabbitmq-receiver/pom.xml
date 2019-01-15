@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>myexperiments-jms-receiver</artifactId>
+    <artifactId>myexperiments-rabbitmq-receiver</artifactId>
     <packaging>jar</packaging>
 
-    <name>myexperiments-jms-receiver</name>
+    <name>myexperiments-rabbitmq-receiver</name>
     <description>Messaging Queue Receiver</description>
 
     <parent>
@@ -23,18 +23,21 @@
     </properties>
 
     <dependencies>
-        <!-- Necessary Boot starters -->
+        <!-- PizzaCloud dependencies -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-artemis</artifactId>
+            <groupId>myexperiments</groupId>
+            <artifactId>myexperiments-domain</artifactId>
+            <version>${pizzacloud.version}</version>
         </dependency>
+
+        <!-- Necessary Boot starters -->
+        <!--
+        Adding the AMQP starter to the build will trigger autoconfiguration that will create a AMQP connection
+        factory and RabbitTemplate beans, as well as other supporting components.
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

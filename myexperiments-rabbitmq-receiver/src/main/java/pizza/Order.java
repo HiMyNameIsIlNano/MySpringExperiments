@@ -16,6 +16,6 @@ public class Order {
   private String deliveryState;
   private String deliveryZip;
 
-  private List<Pizza> tacos = new ArrayList<>();
+  private List<Pizza> pizzas = new ArrayList<>();
 
 }

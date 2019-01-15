@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>myexperiments-jms-sender</artifactId>
+    <artifactId>myexperiments-rabbitmq-sender</artifactId>
     <packaging>jar</packaging>
 
-    <name>myexperiments-jms-sender</name>
+    <name>myexperiments-rabbitmq-sender</name>
     <description>Messaging Queue Sender</description>
 
     <parent>
@@ -23,6 +23,7 @@
     </properties>
 
     <dependencies>
+        <!-- PizzaCloud dependencies -->
         <dependency>
             <groupId>myexperiments</groupId>
             <artifactId>myexperiments-domain</artifactId>
@@ -30,9 +31,21 @@
         </dependency>
 
         <!-- Necessary Boot starters -->
+        <!--
+        Adding the AMQP starter to the build will trigger autoconfiguration that will create a AMQP connection
+        factory and RabbitTemplate beans, as well as other supporting components.
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-artemis</artifactId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <!-- Lombok -->
@@ -47,6 +60,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Dev Tools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>

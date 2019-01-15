@@ -9,7 +9,7 @@ public class Ingredient {
   private final Type type;
   
   public static enum Type {
-    DOUGH, TOPPINGS, CHEESE, SAUCE
+    WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
   }
   
 }
