@@ -16,9 +16,9 @@
           <span th:text="${order.placedAt}">DATE</span> -
           <span th:text="${order.deliveryName}">NAME</span>
           <ul>
-            <li th:each="taco : ${order.tacos}">
-              <span th:text="${taco.name}"></span> : 
-              <span th:each="ingredient : ${taco.ingredients}">
+            <li th:each="pizza : ${order.pizzas}">
+              <span th:text="${pizza.name}"></span> :
+              <span th:each="ingredient : ${pizza.ingredients}">
                 <span th:text="${ingredient.name}">INGREDIENT</span>,
               </span>
             </li>

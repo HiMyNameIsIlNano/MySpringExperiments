@@ -27,8 +27,8 @@
         <module>myexperiments-data</module>
         <module>myexperiments-domain</module>
         <module>myexperiments-restclient</module>
-        <module>myexperiments-rabbitmq-sender</module>
-        <module>myexperiments-rabbitmq-receiver</module>
+        <module>myexperiments-kafka-sender</module>
+        <module>myexperiments-kafka-receiver</module>
         <module>myexperiments-security</module>
         <module>myexperiments-web</module>
         <module>myexperiments-ui</module>

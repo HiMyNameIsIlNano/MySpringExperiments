@@ -1,4 +1,4 @@
-<h2>A few of the most recently created taco masterpieces...</h2>
+<h2>A few of the most recently created pizza masterpieces...</h2>
 <dl>
   {{#.}}
   <dt><b>{{name}}</b></dt>

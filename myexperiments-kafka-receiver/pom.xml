@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>myexperiments-rabbitmq-sender</artifactId>
+    <artifactId>myexperiments-rabbitmq-receiver</artifactId>
     <packaging>jar</packaging>
 
-    <name>myexperiments-rabbitmq-sender</name>
-    <description>Messaging Queue Sender</description>
+    <name>myexperiments-rabbitmq-receiver</name>
+    <description>Messaging Queue Receiver</description>
 
     <parent>
         <groupId>myexperiments</groupId>
@@ -32,12 +32,14 @@
 
         <!-- Necessary Boot starters -->
         <!--
-        Adding the AMQP starter to the build will trigger autoconfiguration that will create a AMQP connection
-        factory and RabbitTemplate beans, as well as other supporting components.
+        This one dependency brings everything you need for Kafka to the project. What’s more, its presence will
+        trigger Spring Boot autoconfiguration for Kafka that will, among other things, arrange for a KafkaTemplate
+        in the Spring application context
         -->
+        <!-- Necessary Boot starters -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

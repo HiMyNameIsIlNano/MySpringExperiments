@@ -8,7 +8,7 @@ $(document).ready(function() {
         $('#recents').html(rendered);
       });
     } else {
-      $('#recents').html("<p>No tacos have been designed yet..." +
+      $('#recents').html("<p>No pizzas have been designed yet..." +
           "be the first to create a tasty masterpiece!</p>");
     }
   });
